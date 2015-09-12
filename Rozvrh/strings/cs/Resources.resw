@@ -120,7 +120,7 @@
   <data name="buttonAdd.Content" xml:space="preserve">
     <value>Přidat</value>
   </data>
-  <data name="buttonCancel" xml:space="preserve">
+  <data name="buttonCancel.Content" xml:space="preserve">
     <value>Zrušit</value>
   </data>
   <data name="buttonSave.Content" xml:space="preserve">
@@ -186,5 +186,32 @@
   </data>
   <data name="Teachers" xml:space="preserve">
     <value>Učitelé</value>
+  </data>
+  <data name="EvenWeek" xml:space="preserve">
+    <value>Sudý týden</value>
+  </data>
+  <data name="EveryWeek" xml:space="preserve">
+    <value>Každý týden</value>
+  </data>
+  <data name="FridayTitle.Text" xml:space="preserve">
+    <value>Pátek</value>
+  </data>
+  <data name="MondayTitle.Text" xml:space="preserve">
+    <value>Pondělí</value>
+  </data>
+  <data name="OddWeek" xml:space="preserve">
+    <value>Lichý týden</value>
+  </data>
+  <data name="ThursdayTitle.Text" xml:space="preserve">
+    <value>Čtvrtek</value>
+  </data>
+  <data name="TuesdayTitle.Text" xml:space="preserve">
+    <value>Úterý</value>
+  </data>
+  <data name="WednesdayTitle.Text" xml:space="preserve">
+    <value>Středa</value>
+  </data>
+  <data name="Week.Text" xml:space="preserve">
+    <value>Týden</value>
   </data>
 </root>

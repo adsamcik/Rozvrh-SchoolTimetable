@@ -8,12 +8,10 @@ namespace Rozvrh {
     public class Class {
         public string name;
         public string shortName;
-        public Teacher teacher;
 
         public Class(string name, string shortName, Teacher teacher) {
             this.name = name;
             this.shortName = shortName;
-            this.teacher = teacher;
         }
 
         public override string ToString() {

@@ -13,7 +13,7 @@ namespace Rozvrh {
 
         static Windows.Storage.StorageFolder roamingFolder;
 
-        static Data() {
+        public static void Initialize() {
             roamingFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
             dataStore.Load();
         }
@@ -34,8 +34,8 @@ namespace Rozvrh {
         }
 
         class DataStore {
-            public List<Class> classes = new List<Class>();
             public List<Teacher> teachers = new List<Teacher>();
+            public List<Class> classes = new List<Class>();
             public List<ClassInstance> classInstances = new List<ClassInstance>();
 
             public async void Save() {

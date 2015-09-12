@@ -8,19 +8,26 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Uid="Class" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="300"/>
-        <Button x:Name="buttonAdd" x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="315,40,0,0" VerticalAlignment="Top" Width="100" Click="addButton_Click"/>
-        <TimePicker x:Name="timePickerFrom" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Uid="ClassStart" HorizontalAlignment="Left" Margin="10,93,0,0" TextWrapping="Wrap" Text="Začátek" VerticalAlignment="Top"/>
-        <TimePicker x:Name="timePickerTo" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Uid="ClassEnd" HorizontalAlignment="Left" Margin="10,158,0,0" TextWrapping="Wrap" Text="Konec" VerticalAlignment="Top"/>
-        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonOk_Click"/>
-        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Fuc" HorizontalAlignment="Left" Margin="94,0,0,10" VerticalAlignment="Bottom" Click="buttonCancel_Click"/>
-        <TextBlock x:Uid="Room" HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" Text="Mistnost" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxRoom" HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Uid="Day" HorizontalAlignment="Left" Margin="10,305,0,0" TextWrapping="Wrap" Text="Den" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBoxDay" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="300"/>
+        <RelativePanel>
+            <TextBlock x:Name="ClassTitle" x:Uid="Class" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True"/>
+            <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassTitle"/>
+            <Button x:Name="buttonAdd" x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="addButton_Click" RelativePanel.Below="ClassTitle" RelativePanel.RightOf="comboBoxClass"/>
+            <TextBlock x:Name="WeekTitle" x:Uid="Week" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tyden" VerticalAlignment="Top" RelativePanel.Below="comboBoxClass"/>
+            <ComboBox x:Name="comboBoxWeek" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="WeekTitle"/>
+            <TextBlock x:Name="ClassStartTitle" x:Uid="ClassStart" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Začátek" VerticalAlignment="Top" RelativePanel.Below="comboBoxWeek"/>
+            <TimePicker x:Name="timePickerFrom" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassStartTitle"/>
+            <TextBlock x:Name="ClassEndTitle" x:Uid="ClassEnd" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Konec" VerticalAlignment="Top" RelativePanel.Below="timePickerFrom"/>
+            <TimePicker x:Name="timePickerTo" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassEndTitle"/>
+            <TextBlock x:Name="RoomTitle" x:Uid="Room" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Mistnost" VerticalAlignment="Top" RelativePanel.Below="timePickerTo"/>
+            <TextBox x:Name="textBoxRoom" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" RelativePanel.Below="RoomTitle"/>
+            <TextBlock x:Name="DayTitle" x:Uid="Day" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Den" VerticalAlignment="Top" RelativePanel.Below="textBoxRoom"/>
+            <ComboBox x:Name="comboBoxDay" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="DayTitle"/>
+            <TextBlock x:Name="TeacherTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Učitel" VerticalAlignment="Top" RelativePanel.Below="comboBoxDay"/>
+            <ComboBox x:Name="comboBoxTeacher" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="TeacherTitle"/>
+            <Button x:Name="button" x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="addTeacherButton_Click" RelativePanel.Below="TeacherTitle" RelativePanel.LeftOf="" RelativePanel.RightOf="comboBoxTeacher"/>
+        </RelativePanel>
 
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonOk_Click"/>
+        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="94,0,0,10" VerticalAlignment="Bottom" Click="buttonCancel_Click"/>
     </Grid>
 </Page>

@@ -20,6 +20,8 @@ namespace Rozvrh {
             this.InitializeComponent();
             instance = this;
 
+            Data.Initialize();
+
             var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
             // Title bar colors. Alpha must be 255.
             titleBar.BackgroundColor = new Color() { A = 255, R = 60, G = 120, B = 240 };
@@ -62,17 +64,19 @@ namespace Rozvrh {
             SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
         }
 
-        public ObservableCollection<NavLink> NavLinks {
-            get {
-                return _navLinks;
-            }
-        }
-
+        public ObservableCollection<NavLink> NavLinks {get { return _navLinks;} }
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
-            new NavLink() { Label = "Add", Symbol = Windows.UI.Xaml.Controls.Symbol.Add, Page = typeof(AddClassInstance)  },
-            new NavLink() { Label = "ClassClass", Symbol = Windows.UI.Xaml.Controls.Symbol.Library, Page = typeof(AddClass) },
-            new NavLink() { Label = "Teachers", Symbol = Windows.UI.Xaml.Controls.Symbol.People, Page = typeof(AddTeacher) }
+            new NavLink() { Label = "Add", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
+            new NavLink() { Label = "ClassClass", Symbol = Symbol.Library, Page = typeof(AddClass) },
+            new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(AddTeacher) }
+        };
+
+        public ObservableCollection<NavLink> DisplayStyles {get {return _displayStyles;}}
+        private ObservableCollection<NavLink> _displayStyles = new ObservableCollection<NavLink>()
+        {
+            new NavLink() { Label = "Agenda", Symbol = Symbol.SlideShow, Page = typeof(Agenda)  },
+            new NavLink() { Label = "Week", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) }
         };
 
         private void Content_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e) {

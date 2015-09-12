@@ -187,4 +187,31 @@
   <data name="Wednesday" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="EvenWeek" xml:space="preserve">
+    <value>Even week</value>
+  </data>
+  <data name="EveryWeek" xml:space="preserve">
+    <value>Every week</value>
+  </data>
+  <data name="FridayTitle.Text" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="MondayTitle.Text" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="OddWeek" xml:space="preserve">
+    <value>Odd week</value>
+  </data>
+  <data name="ThursdayTitle.Text" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="TuesdayTitle.Text" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="WednesdayTitle.Text" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Week.Text" xml:space="preserve">
+    <value>Week</value>
+  </data>
 </root>

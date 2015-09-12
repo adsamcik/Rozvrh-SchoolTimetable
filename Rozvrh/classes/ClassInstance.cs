@@ -18,6 +18,7 @@ namespace Rozvrh {
 
         public string room;
         public WeekDay day;
+        public Teacher teacher;
 
         public ClassInstance(Class classData, TimeSpan from, TimeSpan to, string room, WeekDay day) {
             this.classData = classData;

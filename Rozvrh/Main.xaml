@@ -22,6 +22,10 @@
                 <ListView x:Name="NavLinksList" Margin="0,50,0,0" SelectionMode="None" VerticalAlignment="Stretch" 
                     ItemClick="NavLinksList_ItemClick" IsItemClickEnabled="True" 
                     ItemsSource="{x:Bind NavLinks}" ItemTemplate="{StaticResource NavLinkItemTemplate}"/>
+                
+                <ListView x:Name="DisplayStyleList" Margin="0,420,0,0" SelectionMode="None" VerticalAlignment="Bottom" 
+                    ItemClick="NavLinksList_ItemClick" IsItemClickEnabled="True" 
+                    ItemsSource="{x:Bind DisplayStyles}" ItemTemplate="{StaticResource NavLinkItemTemplate}" VerticalContentAlignment="Bottom"/>
             </Grid>
         </SplitView.Pane>
         <SplitView.Content>

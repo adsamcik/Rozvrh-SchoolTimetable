@@ -37,6 +37,14 @@ namespace Rozvrh {
             days[4] = loader.GetString("Friday");
 
             comboBoxDay.ItemsSource = days;
+
+            string[] weekTypes = new string[3];
+            weekTypes[0] = loader.GetString("EveryWeek");
+            weekTypes[1] = loader.GetString("OddWeek");
+            weekTypes[2] = loader.GetString("EvenWeek");
+
+            comboBoxWeek.ItemsSource = weekTypes;
+
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e) {
