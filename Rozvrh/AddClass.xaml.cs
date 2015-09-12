@@ -27,8 +27,12 @@ namespace Rozvrh {
         }
 
         private void addTeacherButton_Click(object sender, RoutedEventArgs e) {
-            Data.classes.Add(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedItem));
             Frame.Navigate(typeof(AddTeacher), Frame);
+        }
+
+        private void buttonSave_Click(object sender, RoutedEventArgs e) {
+            Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedValue));
+            Frame.GoBack();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
@@ -36,11 +40,6 @@ namespace Rozvrh {
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-        }
-
-        private void buttonSave_Click(object sender, RoutedEventArgs e) {
-            Data.classes.Add(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedValue));
-            Frame.GoBack();
         }
     }
 }

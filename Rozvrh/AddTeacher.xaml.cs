@@ -26,7 +26,7 @@ namespace Rozvrh {
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e) {
-            Data.teachers.Add(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
+            Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
             Frame.GoBack();
             //Frame.nav
         }

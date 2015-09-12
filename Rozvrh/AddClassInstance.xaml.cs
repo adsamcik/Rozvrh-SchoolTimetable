@@ -21,6 +21,7 @@ namespace Rozvrh {
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AddClassInstance : Page {
+
         public AddClassInstance() {
             this.InitializeComponent();
             comboBoxClass.ItemsSource = Data.classes;
@@ -42,20 +43,20 @@ namespace Rozvrh {
             Frame.Navigate(typeof(AddClass));
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            if(Frame.CanGoBack)
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            else
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-        }
-
         private void buttonOk_Click(object sender, RoutedEventArgs e) {
-            Data.classInstances.Add(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex));
+            Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex));
             Frame.GoBack();
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e) {
             Frame.GoBack();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (Frame.CanGoBack)
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            else
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
     }
 }
