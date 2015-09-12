@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="Rozvrh.WeekView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rozvrh"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ImageOverlayTemplate" x:DataType="local:ClassInstance">
+            <Grid Height="110">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="13*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions> 
+                <Border Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}" Margin="0,0,0,5">
+                    <TextBlock Text="{x:Bind classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Left"/>
+                </Border>
+                <TextBlock Text="{x:Bind room}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" Margin="8,0,0,32" HorizontalAlignment="Left" Width="120"/>
+                <TextBlock Text="{x:Bind fromTo}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,0,8,32" HorizontalAlignment="Right" Width="120"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel HorizontalAlignment="Left" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.IsHorizontalRailEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <GridView ItemsSource="{x:Bind monday}" ItemTemplate="{StaticResource ImageOverlayTemplate }" x:Name="Monday" SelectionMode="None" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="30020" RelativePanel.AlignLeftWithPanel="True"/>
+            <GridView ItemsSource="{x:Bind tuesday}" ItemTemplate="{StaticResource ImageOverlayTemplate }" x:Name="Tuesday" SelectionMode="None" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="320" RelativePanel.RightOf="Monday"/>
+            <GridView ItemsSource="{x:Bind wednesday}" ItemTemplate="{StaticResource ImageOverlayTemplate }" x:Name="Wednesday" SelectionMode="None" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="320" RelativePanel.RightOf="Tuesday"/>
+            <GridView ItemsSource="{x:Bind thursday}" ItemTemplate="{StaticResource ImageOverlayTemplate }" x:Name="Thursday" SelectionMode="None" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="320" RelativePanel.RightOf="Wednesday" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            <GridView ItemsSource="{x:Bind friday}" ItemTemplate="{StaticResource ImageOverlayTemplate }" x:Name="Friday" SelectionMode="None" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="320" RelativePanel.RightOf="Thursday"/>
+        </RelativePanel>
+    </Grid>
+</Page>

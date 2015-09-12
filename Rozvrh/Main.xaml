@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="Rozvrh.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rozvrh"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="NavLinkItemTemplate" x:DataType="local:NavLink">
+            <StackPanel Orientation="Horizontal"  Margin="2,0,0,0">
+                <SymbolIcon Symbol="{x:Bind Symbol}"/>
+                <TextBlock Text="{x:Bind Label}" Margin="24,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <SplitView x:Name="SplitView" HorizontalAlignment="Left" DisplayMode="CompactInline" CompactPaneLength="50" OpenPaneLength="200">
+        <SplitView.Pane>
+            <Grid>
+                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" VerticalAlignment="Top" BorderThickness="0"/>
+                <ListView x:Name="NavLinksList" Margin="0,50,0,0" SelectionMode="None" VerticalAlignment="Stretch" 
+                    ItemClick="NavLinksList_ItemClick" IsItemClickEnabled="True" 
+                    ItemsSource="{x:Bind NavLinks}" ItemTemplate="{StaticResource NavLinkItemTemplate}"/>
+            </Grid>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Frame x:Name="Content" Navigated="Content_Navigated" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0" />
+        </SplitView.Content>
+    </SplitView>
+</Page>
