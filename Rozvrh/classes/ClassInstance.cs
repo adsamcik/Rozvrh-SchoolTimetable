@@ -9,6 +9,13 @@ namespace Rozvrh {
     public class ClassInstance {
         public Class classData;
         public TimeSpan from, to;
+
+        public string fromTo {
+            get {
+                return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm");
+            }
+        }
+
         public string room;
         public WeekDay day;
 

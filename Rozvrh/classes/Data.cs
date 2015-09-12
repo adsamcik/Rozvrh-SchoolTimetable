@@ -40,10 +40,11 @@ namespace Rozvrh {
 
             public async void Save() {
                 StorageFile dataFile = await roamingFolder.CreateFileAsync("dataFile", CreationCollisionOption.ReplaceExisting);
-                await FileIO.WriteTextAsync(dataFile, JsonConvert.SerializeObject(this));
+                await FileIO.WriteTextAsync(dataFile, JsonConvert.SerializeObject(this, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
             }
 
             public async void Load() {
+                System.Diagnostics.Debug.WriteLine(roamingFolder.Path);
                 try {
                     StorageFile dataFile = await roamingFolder.GetFileAsync("dataFile");
                     dataStore = JsonConvert.DeserializeObject<DataStore>(await FileIO.ReadTextAsync(dataFile));

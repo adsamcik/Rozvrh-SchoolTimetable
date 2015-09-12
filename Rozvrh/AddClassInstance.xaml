@@ -17,9 +17,9 @@
         <TextBlock x:Uid="ClassEnd" HorizontalAlignment="Left" Margin="10,158,0,0" TextWrapping="Wrap" Text="Konec" VerticalAlignment="Top"/>
         <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonOk_Click"/>
         <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Fuc" HorizontalAlignment="Left" Margin="94,0,0,10" VerticalAlignment="Bottom" Click="buttonCancel_Click"/>
-        <TextBlock x:Uid="ClassEnd" HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" Text="Mistnost" VerticalAlignment="Top"/>
+        <TextBlock x:Uid="Room" HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" Text="Mistnost" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxRoom" HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Uid="ClassEnd" HorizontalAlignment="Left" Margin="10,305,0,0" TextWrapping="Wrap" Text="Den" VerticalAlignment="Top"/>
+        <TextBlock x:Uid="Day" HorizontalAlignment="Left" Margin="10,305,0,0" TextWrapping="Wrap" Text="Den" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBoxDay" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="300"/>
 
     </Grid>

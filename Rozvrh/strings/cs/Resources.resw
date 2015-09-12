@@ -120,7 +120,7 @@
   <data name="buttonAdd.Content" xml:space="preserve">
     <value>Přidat</value>
   </data>
-  <data name="ButtonCancel" xml:space="preserve">
+  <data name="buttonCancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
   <data name="buttonSave.Content" xml:space="preserve">
@@ -139,10 +139,10 @@
     <value>Začátek</value>
   </data>
   <data name="Friday" xml:space="preserve">
-    <value>Patek</value>
+    <value>Pátek</value>
   </data>
   <data name="Monday" xml:space="preserve">
-    <value>Pondeli</value>
+    <value>Pondělí</value>
   </data>
   <data name="PersonDegree.Text" xml:space="preserve">
     <value>Titul</value>
@@ -160,15 +160,31 @@
     <value>Zkratka</value>
   </data>
   <data name="Sunday" xml:space="preserve">
-    <value>Nedele</value>
+    <value>Neděle</value>
   </data>
   <data name="Thursday" xml:space="preserve">
-    <value>Ctvrtek</value>
+    <value>Čtvrtek</value>
   </data>
   <data name="Tuesday" xml:space="preserve">
-    <value>Utery</value>
+    <value>Úterý</value>
   </data>
   <data name="Wednesday" xml:space="preserve">
-    <value>Streda</value>
+    <value>Středa</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="ClassClass" xml:space="preserve">
+    <value>Hodiny</value>
+    <comment>přejmenováno kvůli duplicitní chybě</comment>
+  </data>
+  <data name="Day.Text" xml:space="preserve">
+    <value>Den</value>
+  </data>
+  <data name="Room.Text" xml:space="preserve">
+    <value>Místnost</value>
+  </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>Učitelé</value>
   </data>
 </root>
