@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="Rozvrh.AddTeacher"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rozvrh"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Titul" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxDegree" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47"/>
+        <TextBlock HorizontalAlignment="Left" Margin="79,10,0,0" TextWrapping="Wrap" Text="Jmeno" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="79,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Margin="234,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBlock HorizontalAlignment="Left" Margin="234,10,0,0" TextWrapping="Wrap" Text="Prijmeni" VerticalAlignment="Top"/>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonSave_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="13,77,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Margin="10,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
+        <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5"/>
+
+    </Grid>
+</Page>

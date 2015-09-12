@@ -17,17 +17,24 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Rozvrh {
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page {
+        public static MainPage instance;
+
         public MainPage() {
             this.InitializeComponent();
+            instance = this;
+            listView.ItemsSource = Data.classInstances;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e) {
-            Frame.Navigate(typeof(AddPage), true);
+            //Frame rootFrame = Window.Current.Content as Frame;
 
+            // Navigate to the next page, with info in the parameters whether to enable the title bar UI or not.
+            Frame.Navigate(typeof(AddClassInstance));
         }
     }
 }

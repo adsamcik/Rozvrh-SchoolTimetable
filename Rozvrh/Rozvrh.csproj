@@ -101,22 +101,26 @@
     <Compile Include="AddClass.xaml.cs">
       <DependentUpon>AddClass.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddPage.xaml.cs">
-      <DependentUpon>AddPage.xaml</DependentUpon>
+    <Compile Include="AddClassInstance.xaml.cs">
+      <DependentUpon>AddClassInstance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTeacher.xaml.cs">
+      <DependentUpon>AddTeacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Class.cs" />
-    <Compile Include="ClassInstance.cs" />
-    <Compile Include="ClassType.cs" />
-    <Compile Include="Data.cs" />
+    <Compile Include="classes\Class.cs" />
+    <Compile Include="classes\ClassInstance.cs" />
+    <Compile Include="classes\ClassType.cs" />
+    <Compile Include="classes\Data.cs" />
+    <Compile Include="classes\Enums.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Teacher.cs" />
-    <Compile Include="Week.cs" />
+    <Compile Include="classes\Teacher.cs" />
+    <Compile Include="classes\Week.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -143,7 +147,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddPage.xaml">
+    <Page Include="AddClassInstance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTeacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

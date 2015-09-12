@@ -120,4 +120,55 @@
   <data name="buttonAdd.Content" xml:space="preserve">
     <value>Přidat</value>
   </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="buttonSave.Content" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
+  <data name="Class.Text" xml:space="preserve">
+    <value>Třída</value>
+  </data>
+  <data name="ClassEnd.Text" xml:space="preserve">
+    <value>Konec</value>
+  </data>
+  <data name="ClassName.Text" xml:space="preserve">
+    <value>Název hodiny</value>
+  </data>
+  <data name="ClassStart.Text" xml:space="preserve">
+    <value>Začátek</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Patek</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Pondeli</value>
+  </data>
+  <data name="PersonDegree.Text" xml:space="preserve">
+    <value>Titul</value>
+  </data>
+  <data name="PersonName.Text" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="PersonSurname.Text" xml:space="preserve">
+    <value>Příjmení</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Sobota</value>
+  </data>
+  <data name="ShortClassName.Text" xml:space="preserve">
+    <value>Zkratka</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Nedele</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Ctvrtek</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Utery</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Streda</value>
+  </data>
 </root>

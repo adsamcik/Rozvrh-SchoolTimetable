@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0">
-        <Button x:Name="buttonAdd" x:Uid="buttonAdd" HorizontalAlignment="Left" Margin="36,25,0,0" VerticalAlignment="Top" Click="buttonAdd_Click"/>
+        <Button x:Name="buttonAdd" x:Uid="buttonAdd" HorizontalAlignment="Left" Margin="36,25,0,0" VerticalAlignment="Top" Click="buttonAdd_Click" Content="Add"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="357" Margin="36,62,0,0" VerticalAlignment="Top" Width="595"/>
     </Grid>
 </Page>

@@ -120,4 +120,34 @@
   <data name="buttonAdd.Content" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="buttonSave.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Class.Text" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="ClassEnd.Text" xml:space="preserve">
+    <value>Class end</value>
+  </data>
+  <data name="ClassName.Text" xml:space="preserve">
+    <value>Class name</value>
+  </data>
+  <data name="ClassStart.Text" xml:space="preserve">
+    <value>Class start</value>
+  </data>
+  <data name="PersonDegree.Text" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="PersonName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PersonSurname.Text" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="ShortClassName.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
 </root>

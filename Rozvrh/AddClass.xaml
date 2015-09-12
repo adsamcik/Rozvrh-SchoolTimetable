@@ -8,14 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlockName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Název" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Name="textBlockShortName" HorizontalAlignment="Left" Margin="323,14,0,0" TextWrapping="Wrap" Text="Zkratka" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.45"/>
-        <TextBox x:Name="textBoxShortName" HorizontalAlignment="Left" Margin="323,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="300"/>
+        <TextBlock x:Name="textBlockName" x:Uid="ClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Název" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
+        <TextBlock x:Name="textBlockShortName" x:Uid="ShortClassName" HorizontalAlignment="Left" Margin="323,14,0,0" TextWrapping="Wrap" Text="Zkratka" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.45"/>
+        <TextBox x:Name="textBoxShortName" HorizontalAlignment="Left" Margin="323,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonSave_Click"/>
+        <ComboBox x:Name="comboBoxTeacher" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="300"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Učitel" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Přidat" HorizontalAlignment="Left" Margin="323,103,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="button" x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="323,103,0,0" VerticalAlignment="Top" Width="100" Click="addTeacherButton_Click"/>
 
     </Grid>
 </Page>

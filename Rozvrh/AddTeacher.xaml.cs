@@ -20,27 +20,22 @@ namespace Rozvrh {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddClass : Page {
-        public AddClass() {
+    public sealed partial class AddTeacher : Page {
+        public AddTeacher() {
             this.InitializeComponent();
-            comboBoxTeacher.ItemsSource = Data.teachers;
-        }
-
-        private void addTeacherButton_Click(object sender, RoutedEventArgs e) {
-            Data.classes.Add(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedItem));
-            Frame.Navigate(typeof(AddTeacher), Frame);
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            if (Frame.CanGoBack)
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            else
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e) {
-            Data.classes.Add(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedValue));
+            Data.teachers.Add(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
             Frame.GoBack();
+            //Frame.nav
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if(Frame.CanGoBack)
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            else
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
     }
 }
