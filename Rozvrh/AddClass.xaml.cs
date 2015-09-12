@@ -23,15 +23,10 @@ namespace Rozvrh {
     public sealed partial class AddClass : Page {
         public AddClass() {
             this.InitializeComponent();
-            comboBoxTeacher.ItemsSource = Data.teachers;
-        }
-
-        private void addTeacherButton_Click(object sender, RoutedEventArgs e) {
-            Frame.Navigate(typeof(AddTeacher), Frame);
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e) {
-            Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text, (Teacher)comboBoxTeacher.SelectedValue));
+            Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text));
             Frame.GoBack();
         }
     }

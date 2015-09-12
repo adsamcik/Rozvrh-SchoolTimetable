@@ -9,7 +9,7 @@ namespace Rozvrh {
         public string name;
         public string shortName;
 
-        public Class(string name, string shortName, Teacher teacher) {
+        public Class(string name, string shortName) {
             this.name = name;
             this.shortName = shortName;
         }

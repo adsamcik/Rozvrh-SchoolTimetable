@@ -10,6 +10,7 @@ namespace Rozvrh {
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class WeekView : Page {
+        public static Windows.UI.Xaml.ResourceDictionary resources;
         List<ClassInstance> classInstances { get { return Data.classInstances; } }
 
         List<ClassInstance> monday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Monday).OrderBy(x => x.from).ToList(); } }
@@ -20,6 +21,7 @@ namespace Rozvrh {
 
         public WeekView() {
             this.InitializeComponent();
+            resources = Resources;
         }
     }
 }

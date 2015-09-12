@@ -118,12 +118,13 @@
     <Compile Include="classes\ClassType.cs" />
     <Compile Include="classes\Data.cs" />
     <Compile Include="classes\Enums.cs" />
+    <Compile Include="ClassWeekStyleSelector.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="classes\Teacher.cs" />
-    <Compile Include="classes\Week.cs" />
+    <Compile Include="classes\WeekType.cs" />
     <Compile Include="WeekView.xaml.cs">
       <DependentUpon>WeekView.xaml</DependentUpon>
     </Compile>
@@ -163,11 +164,6 @@
     <Page Include="Agenda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Main.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -120,7 +120,7 @@
   <data name="buttonAdd.Content" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="buttonCancel" xml:space="preserve">
+  <data name="buttonCancel.Content" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="buttonSave.Content" xml:space="preserve">

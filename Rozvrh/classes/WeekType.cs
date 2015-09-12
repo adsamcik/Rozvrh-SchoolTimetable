@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Rozvrh {
-    public enum Week {
+    public enum WeekType {
         EveryWeek,
         OddWeek,
         EvenWeek

@@ -44,7 +44,7 @@ namespace Rozvrh {
             weekTypes[2] = loader.GetString("EvenWeek");
 
             comboBoxWeek.ItemsSource = weekTypes;
-
+            comboBoxTeacher.ItemsSource = Data.teachers;
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e) {
@@ -52,12 +52,16 @@ namespace Rozvrh {
         }
 
         private void buttonOk_Click(object sender, RoutedEventArgs e) {
-            Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex));
+            Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
             Frame.GoBack();
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e) {
             Frame.GoBack();
+        }
+
+        private void addTeacherButton_Click(object sender, RoutedEventArgs e) {
+            Frame.Navigate(typeof(AddTeacher), Frame);
         }
     }
 }

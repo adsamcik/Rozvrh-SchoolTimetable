@@ -27,7 +27,7 @@
             <Button x:Name="button" x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="addTeacherButton_Click" RelativePanel.Below="TeacherTitle" RelativePanel.LeftOf="" RelativePanel.RightOf="comboBoxTeacher"/>
         </RelativePanel>
 
-        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonOk_Click"/>
-        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="94,0,0,10" VerticalAlignment="Bottom" Click="buttonCancel_Click"/>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="299,0,0,10" VerticalAlignment="Bottom" Click="buttonOk_Click" Width="85"/>
+        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonCancel_Click" Width="80"/>
     </Grid>
 </Page>
