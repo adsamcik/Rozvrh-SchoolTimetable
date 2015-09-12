@@ -53,6 +53,9 @@ namespace Rozvrh {
             ResourceLoader resourceLoader = new ResourceLoader();
             foreach (var link in _navLinks)
                 link.Label = resourceLoader.GetString(link.Label);
+
+            foreach (var link in _displayStyles)
+                link.Label = resourceLoader.GetString(link.Label);
         }
 
         private void NavLinksList_ItemClick(object sender, ItemClickEventArgs e) {
@@ -75,8 +78,8 @@ namespace Rozvrh {
         public ObservableCollection<NavLink> DisplayStyles {get {return _displayStyles;}}
         private ObservableCollection<NavLink> _displayStyles = new ObservableCollection<NavLink>()
         {
-            new NavLink() { Label = "Agenda", Symbol = Symbol.SlideShow, Page = typeof(Agenda)  },
-            new NavLink() { Label = "Week", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) }
+            new NavLink() { Label = "AgendaView", Symbol = Symbol.SlideShow, Page = typeof(Agenda)  },
+            new NavLink() { Label = "WeekView", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) }
         };
 
         private void Content_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e) {

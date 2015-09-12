@@ -214,4 +214,10 @@
   <data name="Week.Text" xml:space="preserve">
     <value>Week</value>
   </data>
+  <data name="AgendaView" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="WeekView" xml:space="preserve">
+    <value>Week</value>
+  </data>
 </root>

@@ -1,0 +1,2 @@
+MainPackage=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_0.1.0.0_x64.appx
+ResourcePack=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_0.1.0.0_language-cs.appx
