@@ -46,8 +46,9 @@ namespace Rozvrh {
             Content.Navigate(typeof(WeekView));
 
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) => {
-                if (Content.CanGoBack)
+                if (Content.CanGoBack) {
                     Content.GoBack();
+                }
             };
 
             ResourceLoader resourceLoader = new ResourceLoader();

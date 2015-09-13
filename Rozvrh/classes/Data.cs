@@ -13,6 +13,10 @@ namespace Rozvrh {
 
         static Windows.Storage.StorageFolder roamingFolder;
 
+        public static void Save() {
+            dataStore.Save();
+        }
+
         public static void Initialize() {
             roamingFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
             dataStore.Load();

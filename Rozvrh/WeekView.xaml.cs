@@ -23,5 +23,9 @@ namespace Rozvrh {
             this.InitializeComponent();
             resources = Resources;
         }
+
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e) {
+            Frame.Navigate(typeof(AddClassInstance), e.ClickedItem);
+        }
     }
 }

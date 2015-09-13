@@ -98,7 +98,6 @@
     </Content>
     <None Include="project.json" />
     <None Include="Rozvrh_TemporaryKey.pfx" />
-    <None Include="Test.snk" />
     <PRIResource Include="strings\en\Resources.resw" />
     <PRIResource Include="strings\cs\Resources.resw" />
   </ItemGroup>
@@ -123,7 +122,10 @@
     <Compile Include="classes\ClassType.cs" />
     <Compile Include="classes\Data.cs" />
     <Compile Include="classes\Enums.cs" />
-    <Compile Include="ClassWeekStyleSelector.cs" />
+    <Compile Include="ClassInstanceDetail.xaml.cs">
+      <DependentUpon>ClassInstanceDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="classes\ClassWeekStyleSelector.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -170,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ClassInstanceDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,7 +197,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Test.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

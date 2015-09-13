@@ -24,6 +24,9 @@ namespace Rozvrh {
 
         public AddClassInstance() {
             this.InitializeComponent();
+
+            SystemNavigationManager.GetForCurrentView().BackRequested += GoBack_Trigger;
+
             comboBoxClass.ItemsSource = Data.classes;
 
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
@@ -47,20 +50,59 @@ namespace Rozvrh {
             comboBoxTeacher.ItemsSource = Data.teachers;
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e) {
+        ClassInstance editObject;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            ClassInstance cInstance = (ClassInstance)e.Parameter;
+
+            if (cInstance != null) {
+                comboBoxClass.SelectedIndex = Data.classes.FindIndex(x => x == cInstance.classData);
+                comboBoxWeek.SelectedIndex = (int)cInstance.weekType;
+                timePickerFrom.Time = cInstance.from;
+                timePickerTo.Time = cInstance.to;
+                textBoxRoom.Text = cInstance.room;
+                comboBoxDay.SelectedIndex = (int)cInstance.day;
+                comboBoxTeacher.SelectedIndex = Data.teachers.FindIndex(x => x == cInstance.teacher);
+                editObject = cInstance;
+            }
+        }
+
+
+        private void Ok_Click(object sender, RoutedEventArgs e) {
+            NavigationCacheMode = NavigationCacheMode.Disabled;
+            if (editObject != null) {
+                editObject.classData = (Class)comboBoxClass.SelectedItem;
+                editObject.weekType = (WeekType)comboBoxWeek.SelectedIndex;
+                editObject.from = timePickerFrom.Time;
+                editObject.to = timePickerTo.Time;
+                editObject.room = textBoxRoom.Text;
+                editObject.day = (classes.WeekDay)comboBoxDay.SelectedIndex;
+                editObject.teacher = (Teacher)comboBoxTeacher.SelectedItem;
+                Data.Save();
+            }
+            else
+                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
+
+            Frame.GoBack();
+        }
+
+        private void GoBack_Trigger(object sender, BackRequestedEventArgs e) {
+            NavigationCacheMode = NavigationCacheMode.Disabled;
+            Frame.GoBack();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e) {
+            NavigationCacheMode = NavigationCacheMode.Disabled;
+            Frame.GoBack();
+        }
+
+        private void AddClass_Click(object sender, RoutedEventArgs e) {
+            NavigationCacheMode = NavigationCacheMode.Required;
             Frame.Navigate(typeof(AddClass));
         }
 
-        private void buttonOk_Click(object sender, RoutedEventArgs e) {
-            Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
-            Frame.GoBack();
-        }
-
-        private void buttonCancel_Click(object sender, RoutedEventArgs e) {
-            Frame.GoBack();
-        }
-
-        private void addTeacherButton_Click(object sender, RoutedEventArgs e) {
+        private void AddTeacher_Click(object sender, RoutedEventArgs e) {
+            NavigationCacheMode = NavigationCacheMode.Required;
             Frame.Navigate(typeof(AddTeacher), Frame);
         }
     }
