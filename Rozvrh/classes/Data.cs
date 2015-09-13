@@ -11,14 +11,16 @@ namespace Rozvrh {
         public static List<Teacher> teachers { get { return dataStore.teachers; } }
         public static List<ClassInstance> classInstances { get { return dataStore.classInstances; } }
 
-        static Windows.Storage.StorageFolder roamingFolder;
+        public static Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+        static StorageFolder roamingFolder;
 
         public static void Save() {
             dataStore.Save();
         }
 
         public static void Initialize() {
-            roamingFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+            roamingFolder = ApplicationData.Current.RoamingFolder;
             dataStore.Load();
         }
 

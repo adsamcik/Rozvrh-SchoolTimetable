@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rozvrh {
     public enum ClassType {
-        
+        Standard,
+        Lecture,
+        Exercise,
+        Lab,
+        Workshop
     }
 }

@@ -13,7 +13,9 @@
                 <TextBlock x:Name="ClassTitle" x:Uid="Class" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True"/>
                 <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassTitle"/>
                 <Button x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="AddClass_Click" RelativePanel.Below="ClassTitle" RelativePanel.RightOf="comboBoxClass"/>
-                <TextBlock x:Name="WeekTitle" x:Uid="Week" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tyden" VerticalAlignment="Top" RelativePanel.Below="comboBoxClass"/>
+                <TextBlock x:Name="ClassTypeTitle" x:Uid="ClassTypeTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top" RelativePanel.Below="comboBoxClass"/>
+                <ComboBox x:Name="comboBoxClassType" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassTypeTitle"/>
+                <TextBlock x:Name="WeekTitle" x:Uid="Week" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tyden" VerticalAlignment="Top" RelativePanel.Below="comboBoxClassType"/>
                 <ComboBox x:Name="comboBoxWeek" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="WeekTitle"/>
                 <TextBlock x:Name="ClassStartTitle" x:Uid="ClassStart" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Zacatek" VerticalAlignment="Top" RelativePanel.Below="comboBoxWeek"/>
                 <TimePicker x:Name="timePickerFrom" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassStartTitle"/>

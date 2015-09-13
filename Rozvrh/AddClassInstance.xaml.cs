@@ -29,24 +29,28 @@ namespace Rozvrh {
 
             comboBoxClass.ItemsSource = Data.classes;
 
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            string[] classTypes = new string[5];
+            classTypes[0] = Data.loader.GetString("ClassStandard");
+            classTypes[1] = Data.loader.GetString("ClassLecture");
+            classTypes[2] = Data.loader.GetString("ClassExercise");
+            classTypes[3] = Data.loader.GetString("ClassLab");
+            classTypes[4] = Data.loader.GetString("ClassWorkshop");
+            comboBoxClassType.ItemsSource = classTypes;
 
             string[] days = new string[5];
-
-            days[0] = loader.GetString("Monday");
-            days[1] = loader.GetString("Tuesday");
-            days[2] = loader.GetString("Wednesday");
-            days[3] = loader.GetString("Thursday");
-            days[4] = loader.GetString("Friday");
-
+            days[0] = Data.loader.GetString("Monday");
+            days[1] = Data.loader.GetString("Tuesday");
+            days[2] = Data.loader.GetString("Wednesday");
+            days[3] = Data.loader.GetString("Thursday");
+            days[4] = Data.loader.GetString("Friday");
             comboBoxDay.ItemsSource = days;
 
             string[] weekTypes = new string[3];
-            weekTypes[0] = loader.GetString("EveryWeek");
-            weekTypes[1] = loader.GetString("OddWeek");
-            weekTypes[2] = loader.GetString("EvenWeek");
-
+            weekTypes[0] = Data.loader.GetString("EveryWeek");
+            weekTypes[1] = Data.loader.GetString("OddWeek");
+            weekTypes[2] = Data.loader.GetString("EvenWeek");
             comboBoxWeek.ItemsSource = weekTypes;
+
             comboBoxTeacher.ItemsSource = Data.teachers;
         }
 
@@ -57,6 +61,7 @@ namespace Rozvrh {
 
             if (cInstance != null) {
                 comboBoxClass.SelectedIndex = Data.classes.FindIndex(x => x == cInstance.classData);
+                comboBoxClassType.SelectedIndex = (int)cInstance.classType;
                 comboBoxWeek.SelectedIndex = (int)cInstance.weekType;
                 timePickerFrom.Time = cInstance.from;
                 timePickerTo.Time = cInstance.to;
@@ -72,6 +77,7 @@ namespace Rozvrh {
             NavigationCacheMode = NavigationCacheMode.Disabled;
             if (editObject != null) {
                 editObject.classData = (Class)comboBoxClass.SelectedItem;
+                editObject.classType = (ClassType)comboBoxClassType.SelectedIndex;
                 editObject.weekType = (WeekType)comboBoxWeek.SelectedIndex;
                 editObject.from = timePickerFrom.Time;
                 editObject.to = timePickerTo.Time;
@@ -81,14 +87,15 @@ namespace Rozvrh {
                 Data.Save();
             }
             else
-                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
+                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
 
             Frame.GoBack();
         }
 
         private void GoBack_Trigger(object sender, BackRequestedEventArgs e) {
-            NavigationCacheMode = NavigationCacheMode.Disabled;
-            Frame.GoBack();
+            if (Frame.CurrentSourcePageType == this.GetType()) {
+                NavigationCacheMode = NavigationCacheMode.Disabled;
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {

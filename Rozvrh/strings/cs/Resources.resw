@@ -220,4 +220,22 @@
   <data name="WeekView" xml:space="preserve">
     <value>Týden</value>
   </data>
+  <data name="ClassExercise" xml:space="preserve">
+    <value>Cvičení</value>
+  </data>
+  <data name="ClassLab" xml:space="preserve">
+    <value>Laboratoř</value>
+  </data>
+  <data name="ClassLecture" xml:space="preserve">
+    <value>Přednáška</value>
+  </data>
+  <data name="ClassStandard" xml:space="preserve">
+    <value>Standardní</value>
+  </data>
+  <data name="ClassTypeTitle.Text" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="ClassWorkshop" xml:space="preserve">
+    <value>Seminář</value>
+  </data>
 </root>

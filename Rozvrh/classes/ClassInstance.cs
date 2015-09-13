@@ -1,15 +1,17 @@
-﻿using Rozvrh.classes;
+﻿using Newtonsoft.Json;
+using Rozvrh.classes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rozvrh {
     public class ClassInstance {
         public Class classData;
+        public ClassType classType;
+        [JsonIgnore]
+        public string classTypeString { get { return Data.loader.GetString("Class" + classType.ToString()); } }
+
         public TimeSpan from, to;
 
+        [JsonIgnore]
         public string fromTo {
             get {
                 return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm");
@@ -21,8 +23,9 @@ namespace Rozvrh {
         public WeekType weekType;
         public Teacher teacher;
 
-        public ClassInstance(Class classData, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher) {
+        public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher) {
             this.classData = classData;
+            this.classType = classType;
             this.from = from;
             this.to = to;
             this.room = room;

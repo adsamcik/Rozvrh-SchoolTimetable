@@ -220,4 +220,22 @@
   <data name="WeekView" xml:space="preserve">
     <value>Week</value>
   </data>
+  <data name="ClassExercise" xml:space="preserve">
+    <value>Exercise</value>
+  </data>
+  <data name="ClassLab" xml:space="preserve">
+    <value>Lab</value>
+  </data>
+  <data name="ClassLecture" xml:space="preserve">
+    <value>Lecture</value>
+  </data>
+  <data name="ClassStandard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ClassTypeTitle.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="ClassWorkshop" xml:space="preserve">
+    <value>Workshop</value>
+  </data>
 </root>
