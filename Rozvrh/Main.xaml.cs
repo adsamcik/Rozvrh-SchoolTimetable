@@ -18,6 +18,7 @@ namespace Rozvrh {
     /// </summary>
     public sealed partial class Main : Page {
         public static Main instance;
+        bool canGoBack { get { return (Content.CanGoBack && Content.SourcePageType != typeof(Agenda) && Content.SourcePageType != typeof(WeekView)); } }
 
         public Main() {
             var culture = new CultureInfo("en");
@@ -40,7 +41,7 @@ namespace Rozvrh {
             titleBar.ButtonHoverBackgroundColor = new Color() { A = 255, R = 50, G = 100, B = 200 };
             titleBar.ButtonPressedBackgroundColor = new Color() { A = 255, R = 232, G = 211, B = 162 };
             titleBar.ButtonInactiveBackgroundColor = new Color() { A = 255, R = 135, G = 141, B = 199 };
-            
+
 
             // Title bar button foreground colors. Alpha must be 255.
             titleBar.ButtonForegroundColor = new Color() { A = 255, R = 220, G = 220, B = 255 };
@@ -51,7 +52,7 @@ namespace Rozvrh {
             Content.Navigate(typeof(WeekView));
 
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) => {
-                if (Content.CanGoBack) {
+                if (canGoBack) {
                     Content.GoBack();
                 }
             };
@@ -73,7 +74,7 @@ namespace Rozvrh {
             SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
         }
 
-        public ObservableCollection<NavLink> NavLinks {get { return _navLinks;} }
+        public ObservableCollection<NavLink> NavLinks { get { return _navLinks; } }
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "Add", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
@@ -81,7 +82,7 @@ namespace Rozvrh {
             new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(AddTeacher) }
         };
 
-        public ObservableCollection<NavLink> DisplayStyles {get {return _displayStyles;}}
+        public ObservableCollection<NavLink> DisplayStyles { get { return _displayStyles; } }
         private ObservableCollection<NavLink> _displayStyles = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "AgendaView", Symbol = Symbol.SlideShow, Page = typeof(Agenda)  },
@@ -89,7 +90,7 @@ namespace Rozvrh {
         };
 
         private void Content_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e) {
-            if (Content.CanGoBack)
+            if (canGoBack)
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
