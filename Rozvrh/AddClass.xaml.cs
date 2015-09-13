@@ -25,8 +25,12 @@ namespace Rozvrh {
             this.InitializeComponent();
         }
 
-        private void buttonSave_Click(object sender, RoutedEventArgs e) {
+        private void Save_Click(object sender, RoutedEventArgs e) {
             Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text));
+            Frame.GoBack();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e) {
             Frame.GoBack();
         }
     }

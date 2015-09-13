@@ -15,11 +15,11 @@
         </DataTemplate>
     </Page.Resources>
 
-    <SplitView x:Name="SplitView" HorizontalAlignment="Left" DisplayMode="CompactInline" CompactPaneLength="50" OpenPaneLength="200">
+    <SplitView x:Name="SplitView" HorizontalAlignment="Left" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="200">
         <SplitView.Pane>
             <Grid>
                 <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" VerticalAlignment="Top" BorderThickness="0"/>
-                <ListView x:Name="NavLinksList" Margin="0,50,0,0" SelectionMode="None" VerticalAlignment="Stretch" 
+                <ListView x:Name="NavLinksList" Margin="0,50,0,0" SelectionMode="None" VerticalAlignment="Top" 
                     ItemClick="NavLinksList_ItemClick" IsItemClickEnabled="True" 
                     ItemsSource="{x:Bind NavLinks}" ItemTemplate="{StaticResource NavLinkItemTemplate}"/>
                 

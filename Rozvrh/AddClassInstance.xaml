@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Margin="0,0,0,50" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="0,0,-20,50" VerticalScrollBarVisibility="Auto">
             <RelativePanel>
                 <TextBlock x:Name="ClassTitle" x:Uid="Class" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True"/>
                 <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassTitle"/>

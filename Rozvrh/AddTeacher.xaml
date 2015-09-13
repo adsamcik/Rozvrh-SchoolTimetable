@@ -8,16 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Uid="PersonDegree" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Titul" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxDegree" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47"/>
-        <TextBlock x:Uid="PersonName" HorizontalAlignment="Left" Margin="79,10,0,0" TextWrapping="Wrap" Text="Jmeno" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="79,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
-        <TextBlock x:Uid="PersonSurname" HorizontalAlignment="Left" Margin="234,10,0,0" TextWrapping="Wrap" Text="Prijmeni" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Margin="234,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
-        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonSave_Click"/>
-        <TextBlock x:Uid="EmailTitle" HorizontalAlignment="Left" Margin="13,77,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Margin="10,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
-        <TextBlock x:Uid="PhoneTitle" HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5"/>
-        <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
+        <RelativePanel>
+            <TextBlock x:Uid="PersonDegree" x:Name="PersonDegreeTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Titul" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBox x:Name="textBoxDegree" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="PersonDegreeTitle"/>
+            <TextBlock x:Uid="PersonName" x:Name="PersonNameTitle" HorizontalAlignment="Left" Margin="3,10,0,0" TextWrapping="Wrap" Text="Jmeno" VerticalAlignment="Top" RelativePanel.RightOf="textBoxDegree" RelativePanel.AlignTopWithPanel="True"/>
+            <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" RelativePanel.RightOf="textBoxDegree" RelativePanel.Below="PersonNameTitle"/>
+            <TextBlock x:Uid="PersonSurname" x:Name="PersonSurnameTitle" HorizontalAlignment="Left" Margin="5,10,0,0" TextWrapping="Wrap" Text="Prijmeni" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="textBoxName"/>
+            <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" RelativePanel.RightOf="textBoxName" RelativePanel.Below="PersonSurnameTitle"/>
+            <TextBlock x:Uid="EmailTitle" x:Name="EmailTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="textBoxDegree"/>
+            <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374" RelativePanel.Below="EmailTitle"/>
+            <TextBlock x:Uid="PhoneTitle" x:Name="PhoneTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5" RelativePanel.Below="textBoxEmail"/>
+            <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="10,2,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374" RelativePanel.Below="PhoneTitle"/>
+        </RelativePanel>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="285,0,0,10" VerticalAlignment="Bottom" Click="Save_Click" Width="100" Height="30"/>
+        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" Click="Cancel_Click" Width="100" Height="30"/>
     </Grid>
 </Page>

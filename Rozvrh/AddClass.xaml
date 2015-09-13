@@ -8,11 +8,13 @@
     mc:Ignorable="d" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlockName" x:Uid="ClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Název" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Name="textBlockShortName" x:Uid="ShortClassName" HorizontalAlignment="Left" Margin="323,14,0,0" TextWrapping="Wrap" Text="Zkratka" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.45"/>
-        <TextBox x:Name="textBoxShortName" HorizontalAlignment="Left" Margin="323,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonSave_Click" Height="55" Width="202"/>
-
+        <RelativePanel>
+            <TextBlock x:Name="ClassNameTitle" x:Uid="ClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nazev" VerticalAlignment="Top" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
+            <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,5,-75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="375" RelativePanel.Below="ClassNameTitle"/>
+            <TextBlock x:Name="ShortClassNameTitle" x:Uid="ShortClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Zkratka" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.45" RelativePanel.Below="textBoxName"/>
+            <TextBox x:Name="textBoxShortName" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" RelativePanel.Below="ShortClassNameTitle"/>
+        </RelativePanel>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="285,0,0,10" VerticalAlignment="Bottom" Click="Save_Click" Width="100" Height="30"/>
+        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" Click="Cancel_Click" Width="100" Height="30"/>
     </Grid>
 </Page>
