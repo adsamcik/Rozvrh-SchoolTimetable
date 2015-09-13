@@ -21,8 +21,7 @@ namespace Rozvrh {
         bool canGoBack { get { return (Content.CanGoBack && Content.SourcePageType != typeof(Agenda) && Content.SourcePageType != typeof(WeekView)); } }
 
         public Main() {
-            var culture = new CultureInfo("en");
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "cs";
             this.InitializeComponent();
             instance = this;
 
@@ -77,6 +76,7 @@ namespace Rozvrh {
         public ObservableCollection<NavLink> NavLinks { get { return _navLinks; } }
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
+             new NavLink() { Label = "AddTask", Symbol = Symbol.Bookmarks, Page = typeof(AddTask) },
             new NavLink() { Label = "Add", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
             new NavLink() { Label = "ClassClass", Symbol = Symbol.Library, Page = typeof(AddClass) },
             new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(AddTeacher) }

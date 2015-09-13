@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rozvrh.classes {
+namespace Rozvrh {
     public enum WeekDay {
         Monday,
         Tuesday,

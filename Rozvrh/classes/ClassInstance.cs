@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Rozvrh.classes;
 using System;
 
 namespace Rozvrh {

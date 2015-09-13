@@ -247,4 +247,22 @@
   <data name="TeacherTitle.Text" xml:space="preserve">
     <value>Učitel</value>
   </data>
+  <data name="AddClassInstance" xml:space="preserve">
+    <value>Přidat hodinu</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Přidat úkol</value>
+  </data>
+  <data name="DeadlineTitle.Text" xml:space="preserve">
+    <value>Uzávěrka</value>
+  </data>
+  <data name="DescriptionTitle.Text" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="NotifyTitle.Text" xml:space="preserve">
+    <value>Upozornit s předstihem dnů</value>
+  </data>
+  <data name="TaskTitle.Text" xml:space="preserve">
+    <value>Název</value>
+  </data>
 </root>

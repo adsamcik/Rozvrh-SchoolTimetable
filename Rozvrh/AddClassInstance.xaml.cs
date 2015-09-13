@@ -82,12 +82,12 @@ namespace Rozvrh {
                 editObject.from = timePickerFrom.Time;
                 editObject.to = timePickerTo.Time;
                 editObject.room = textBoxRoom.Text;
-                editObject.day = (classes.WeekDay)comboBoxDay.SelectedIndex;
+                editObject.day = (WeekDay)comboBoxDay.SelectedIndex;
                 editObject.teacher = (Teacher)comboBoxTeacher.SelectedItem;
                 Data.Save();
             }
             else
-                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (classes.WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
+                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
 
             Frame.GoBack();
         }

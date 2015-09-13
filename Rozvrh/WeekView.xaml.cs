@@ -13,19 +13,33 @@ namespace Rozvrh {
         public static Windows.UI.Xaml.ResourceDictionary resources;
         List<ClassInstance> classInstances { get { return Data.classInstances; } }
 
-        List<ClassInstance> monday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Monday).OrderBy(x => x.from).ToList(); } }
-        List<ClassInstance> tuesday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Tuesday).OrderBy(x => x.from).ToList(); } }
-        List<ClassInstance> wednesday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Wednesday).OrderBy(x => x.from).ToList(); } }
-        List<ClassInstance> thursday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Thursday).OrderBy(x => x.from).ToList(); } }
-        List<ClassInstance> friday { get { return classInstances.FindAll(x => x.day == classes.WeekDay.Friday).OrderBy(x => x.from).ToList(); } }
+        List<DisplayClass>[] week = new List<DisplayClass>[5];
 
         public WeekView() {
-            this.InitializeComponent();
+            for (int i = 0; i < week.Length; i++)
+                week[i] = new List<DisplayClass>();
+
+            foreach (var @class in classInstances)
+                week[(int)@class.day].Add(new DisplayClass(@class));
+
+            foreach (var task in Data.tasks)
+                if ((int)task.when.DayOfWeek <= 5 && (int)task.when.DayOfWeek > 0)
+                    week[(int)task.when.DayOfWeek - 1].Add(new DisplayClass(task));
+
+            for (int i = 0; i < week.Length; i++)
+                week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.when.TimeOfDay).ToList();
+
             resources = Resources;
+
+            this.InitializeComponent();
         }
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e) {
-            Frame.Navigate(typeof(AddClassInstance), e.ClickedItem);
+            DisplayClass dc = (DisplayClass)e.ClickedItem;
+            if (dc.classInstance != null)
+                Frame.Navigate(typeof(AddClassInstance), dc.classInstance);
+            else if (dc.taskInstance != null)
+                Frame.Navigate(typeof(AddTask), dc.taskInstance);
         }
     }
 }

@@ -247,4 +247,22 @@
   <data name="TeacherTitle.Text" xml:space="preserve">
     <value>Teacher</value>
   </data>
+  <data name="AddClassInstance" xml:space="preserve">
+    <value>Add class</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Add task</value>
+  </data>
+  <data name="DeadlineTitle.Text" xml:space="preserve">
+    <value>Deadline</value>
+  </data>
+  <data name="DescriptionTitle.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="NotifyTitle.Text" xml:space="preserve">
+    <value>Notify me days before</value>
+  </data>
+  <data name="TaskTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
 </root>

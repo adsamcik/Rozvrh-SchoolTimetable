@@ -10,6 +10,7 @@ namespace Rozvrh {
         public static List<Class> classes { get { return dataStore.classes; } }
         public static List<Teacher> teachers { get { return dataStore.teachers; } }
         public static List<ClassInstance> classInstances { get { return dataStore.classInstances; } }
+        public static List<Task> tasks { get { return dataStore.tasks; } }
 
         public static Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
@@ -39,10 +40,16 @@ namespace Rozvrh {
             dataStore.Save();
         }
 
+        public static void AddTask(Task task) {
+            tasks.Add(task);
+            dataStore.Save();
+        }
+
         class DataStore {
             public List<Teacher> teachers = new List<Teacher>();
             public List<Class> classes = new List<Class>();
             public List<ClassInstance> classInstances = new List<ClassInstance>();
+            public List<Task> tasks = new List<Task>();
 
             public async void Save() {
                 StorageFile dataFile = await roamingFolder.CreateFileAsync("dataFile", CreationCollisionOption.ReplaceExisting);
