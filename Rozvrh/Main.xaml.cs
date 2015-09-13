@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Threading;
+using System.Globalization;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -17,6 +20,8 @@ namespace Rozvrh {
         public static Main instance;
 
         public Main() {
+            var culture = new CultureInfo("en");
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
             this.InitializeComponent();
             instance = this;
 

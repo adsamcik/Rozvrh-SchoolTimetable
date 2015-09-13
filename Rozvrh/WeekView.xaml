@@ -22,7 +22,7 @@
                     <TextBlock Text="{x:Bind classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Left"/>
                 </Border>
                 <TextBlock Text="{x:Bind room}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" Margin="8,0,0,32" HorizontalAlignment="Left" Width="140"/>
-                <TextBlock Text="{x:Bind fromTo}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,0,8,32" HorizontalAlignment="Right" Width="140"/>
+                <TextBlock Text="{x:Bind fromToString}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,0,8,32" HorizontalAlignment="Right" Width="140"/>
                 <TextBlock Text="{x:Bind teacher}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Left" TextWrapping="Wrap" Margin="8,22,0,0" HorizontalAlignment="Left" Width="140"/>
                 <TextBlock Text="{x:Bind classTypeString}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,22,8,0" HorizontalAlignment="Right" Width="140"/>
             </Grid>
@@ -41,13 +41,13 @@
                     <TextBlock Text="{x:Bind classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Left"/>
                 </Border>
                 <TextBlock Text="{x:Bind room}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" Margin="8,0,0,32" HorizontalAlignment="Left" Width="140"/>
-                <TextBlock Text="{x:Bind fromTo}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,0,8,32" HorizontalAlignment="Right" Width="140"/>
+                <TextBlock Text="{x:Bind fromToString}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,0,8,32" HorizontalAlignment="Right" Width="140"/>
                 <TextBlock Text="{x:Bind teacher}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Left" TextWrapping="Wrap" Margin="8,22,0,0" HorizontalAlignment="Left" Width="140"/>
                 <TextBlock Text="{x:Bind classTypeString}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,22,8,0" HorizontalAlignment="Right" Width="140"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid x:Name="Monday" Margin="0,0,0,12" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.IsHorizontalRailEnabled="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>

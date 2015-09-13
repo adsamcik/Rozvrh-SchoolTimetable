@@ -8,8 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Margin="0,0,0,50" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Left">
-            <RelativePanel UseLayoutRounding="True">
+        <ScrollViewer Margin="0,0,0,50" VerticalScrollBarVisibility="Auto">
+            <RelativePanel>
                 <TextBlock x:Name="ClassTitle" x:Uid="Class" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Předmět" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True"/>
                 <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassTitle"/>
                 <Button x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="AddClass_Click" RelativePanel.Below="ClassTitle" RelativePanel.RightOf="comboBoxClass"/>
@@ -25,7 +25,7 @@
                 <TextBox x:Name="textBoxRoom" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" RelativePanel.Below="RoomTitle"/>
                 <TextBlock x:Name="DayTitle" x:Uid="Day" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Den" VerticalAlignment="Top" RelativePanel.Below="textBoxRoom"/>
                 <ComboBox x:Name="comboBoxDay" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="DayTitle"/>
-                <TextBlock x:Name="TeacherTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Učitel" VerticalAlignment="Top" RelativePanel.Below="comboBoxDay"/>
+                <TextBlock x:Name="TeacherTitle" x:Uid="TeacherTitle" Margin="10,10,0,0" TextWrapping="Wrap" Text="Ucitel" VerticalAlignment="Top" RelativePanel.Below="comboBoxDay"/>
                 <ComboBox x:Name="comboBoxTeacher" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="TeacherTitle"/>
                 <Button x:Uid="buttonAdd" Content="Přidat" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="100" Click="AddTeacher_Click" RelativePanel.Below="TeacherTitle" RelativePanel.LeftOf="" RelativePanel.RightOf="comboBoxTeacher"/>
             </RelativePanel>

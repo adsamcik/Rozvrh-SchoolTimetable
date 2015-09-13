@@ -238,4 +238,13 @@
   <data name="ClassWorkshop" xml:space="preserve">
     <value>Seminář</value>
   </data>
+  <data name="EmailTitle.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PhoneTitle.Text" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="TeacherTitle.Text" xml:space="preserve">
+    <value>Učitel</value>
+  </data>
 </root>

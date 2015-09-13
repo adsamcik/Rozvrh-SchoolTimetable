@@ -12,11 +12,7 @@ namespace Rozvrh {
         public TimeSpan from, to;
 
         [JsonIgnore]
-        public string fromTo {
-            get {
-                return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm");
-            }
-        }
+        public string fromToString { get { return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm"); } }
 
         public string room;
         public WeekDay day;

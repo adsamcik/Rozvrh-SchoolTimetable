@@ -8,17 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Titul" VerticalAlignment="Top"/>
+        <TextBlock x:Uid="PersonDegree" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Titul" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxDegree" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47"/>
-        <TextBlock HorizontalAlignment="Left" Margin="79,10,0,0" TextWrapping="Wrap" Text="Jmeno" VerticalAlignment="Top"/>
+        <TextBlock x:Uid="PersonName" HorizontalAlignment="Left" Margin="79,10,0,0" TextWrapping="Wrap" Text="Jmeno" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="79,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Uid="PersonSurname" HorizontalAlignment="Left" Margin="234,10,0,0" TextWrapping="Wrap" Text="Prijmeni" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxSurname" HorizontalAlignment="Left" Margin="234,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
-        <TextBlock HorizontalAlignment="Left" Margin="234,10,0,0" TextWrapping="Wrap" Text="Prijmeni" VerticalAlignment="Top"/>
         <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Button" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="buttonSave_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="13,77,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
+        <TextBlock x:Uid="EmailTitle" HorizontalAlignment="Left" Margin="13,77,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Margin="10,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
+        <TextBlock x:Uid="PhoneTitle" HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5"/>
         <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5"/>
-
     </Grid>
 </Page>
