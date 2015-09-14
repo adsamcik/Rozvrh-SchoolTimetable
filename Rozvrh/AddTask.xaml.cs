@@ -39,6 +39,7 @@ namespace Rozvrh {
                 taskInstance.deadline = dateTime;
                 taskInstance.notifyInDays = (int)sliderNotify.Value;
                 taskInstance.classTarget = (Class)comboBoxClass.SelectedItem;
+                Data.Save();
             }
             else {
                 Data.AddTask(new Task(

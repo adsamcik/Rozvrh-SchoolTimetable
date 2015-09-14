@@ -3,6 +3,7 @@ using System;
 
 namespace Rozvrh {
     public class ClassInstance {
+        public string uid;
         public Class classData;
         public ClassType classType;
         [JsonIgnore]
@@ -18,7 +19,7 @@ namespace Rozvrh {
         public WeekType weekType;
         public Teacher teacher;
 
-        public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher) {
+        public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher, string uid = "") {
             this.classData = classData;
             this.classType = classType;
             this.from = from;
@@ -27,6 +28,11 @@ namespace Rozvrh {
             this.day = day;
             this.weekType = weekType;
             this.teacher = teacher;
+
+            if (string.IsNullOrWhiteSpace(uid))
+                this.uid = Guid.NewGuid().ToString();
+            else
+                this.uid = uid;
         }
 
         public override string ToString() {

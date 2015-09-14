@@ -1,10 +1,24 @@
 ﻿using AdaptiveTileExtensions;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
 namespace Rozvrh {
     class NotificationManager {
+        public static void SetNotification(Task taskInstance) {
+            XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            XmlNodeList toastTextAttributes = toastXml.GetElementsByTagName("text");
+            toastTextAttributes[0].InnerText = taskInstance.title;
+            toastTextAttributes[1].InnerText = taskInstance.description;
+            IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+            ((XmlElement)toastNode).SetAttribute("duration", "long");
+            ((XmlElement)toastNode).SetAttribute("launch", JsonConvert.SerializeObject(new LaunchData(taskInstance.GetType(), taskInstance.uid)));
+            ToastNotification toast = new ToastNotification(toastXml);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
         public static void CreateClassNotification(ClassInstance classInstance) {
             var tile = AdaptiveTile.CreateTile();
             var binding = TileBinding.Create(TemplateType.TileWide);
@@ -64,8 +78,8 @@ namespace Rozvrh {
             }
 
             if (taskInstance.description != null) {
-                var teacher = new Text(taskInstance.description);
-                subgroup.AddText(teacher);
+                var description = new Text(taskInstance.description);
+                subgroup.AddText(description);
             }
 
 

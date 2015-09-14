@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
@@ -6,6 +7,7 @@ using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -37,7 +39,7 @@ namespace Rozvrh {
             titleBar.ButtonBackgroundColor = new Color() { A = 255, R = 60, G = 120, B = 240 };
             titleBar.ButtonHoverBackgroundColor = new Color() { A = 255, R = 50, G = 100, B = 200 };
             titleBar.ButtonPressedBackgroundColor = new Color() { A = 255, R = 232, G = 211, B = 162 };
-            titleBar.ButtonInactiveBackgroundColor = new Color() { A = 255, R = 135, G = 141, B = 199 };
+            titleBar.ButtonInactiveBackgroundColor = new Color() { A = 255, R = 60, G = 120, B = 240 };
 
 
             // Title bar button foreground colors. Alpha must be 255.
@@ -63,8 +65,21 @@ namespace Rozvrh {
 
             if (Data.tasks.Count > 0) {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                NotificationManager.CreateTaskNotification(Data.tasks[0]);
+                NotificationManager.SetNotification(Data.tasks[0]);
+                //NotificationManager.CreateTaskNotification(Data.tasks[0]);
                 //NotificationManager.CreateClassNotification(Data.classInstances[0]);
+            }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter != null) {
+                LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
+                if (ld != null && ld.type == typeof(Task)) {
+                    Task t = Data.tasks.Find(x => x.uid == ld.data);
+                    if (t != null)
+                        Content.Navigate(typeof(AddTask), t);
+                }
+
             }
         }
 

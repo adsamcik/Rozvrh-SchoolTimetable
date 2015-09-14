@@ -77,6 +77,8 @@ namespace Rozvrh
                 // parameter
                 rootFrame.Navigate(typeof(Main), e.Arguments);
             }
+            else if(e.Arguments != null)
+                rootFrame.Navigate(typeof(Main), e.Arguments);
             // Ensure the current window is active
             Window.Current.Activate();
         }
