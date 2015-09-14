@@ -34,6 +34,7 @@ namespace Rozvrh {
             DateTime dateTime = new DateTime(dto.Year, dto.Month, dto.Day, ts.Hours, ts.Minutes, ts.Seconds);
 
             if (taskInstance != null) {
+                taskInstance = Data.tasks.Find(x => x.uid == taskInstance.uid);
                 taskInstance.title = textBoxTaskTitle.Text;
                 taskInstance.description = textBoxDescription.Text;
                 taskInstance.deadline = dateTime;

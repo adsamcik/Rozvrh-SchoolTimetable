@@ -8,6 +8,8 @@ using Windows.UI.Notifications;
 namespace Rozvrh {
     class NotificationManager {
         public static void SetNotification(Task taskInstance) {
+            DateTime notificationTime = taskInstance.deadline.AddDays(-taskInstance.notifyInDays);
+            if (notificationTime <= DateTime.Now) return;
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
             XmlNodeList toastTextAttributes = toastXml.GetElementsByTagName("text");
             toastTextAttributes[0].InnerText = taskInstance.title;
@@ -15,8 +17,14 @@ namespace Rozvrh {
             IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
             ((XmlElement)toastNode).SetAttribute("duration", "long");
             ((XmlElement)toastNode).SetAttribute("launch", JsonConvert.SerializeObject(new LaunchData(taskInstance.GetType(), taskInstance.uid)));
-            ToastNotification toast = new ToastNotification(toastXml);
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+            ScheduledToastNotification scheduledToast = new ScheduledToastNotification(toastXml, notificationTime);
+            scheduledToast.Id = taskInstance.uid.Substring(0,12);
+
+            ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
+
+            //ToastNotification toast = new ToastNotification(toastXml);
+            //ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
         public static void CreateClassNotification(ClassInstance classInstance) {

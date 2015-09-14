@@ -28,6 +28,7 @@ namespace Rozvrh
         /// </summary>
         public App()
         {
+            Data.Initialize();
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);

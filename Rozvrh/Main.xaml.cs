@@ -25,8 +25,6 @@ namespace Rozvrh {
             this.InitializeComponent();
             instance = this;
 
-            Data.Initialize();
-
             var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
             // Title bar colors. Alpha must be 255.
             titleBar.BackgroundColor = new Color() { A = 255, R = 60, G = 120, B = 240 };
@@ -48,8 +46,6 @@ namespace Rozvrh {
             titleBar.ButtonPressedForegroundColor = new Color() { A = 255, R = 220, G = 220, B = 255 };
             titleBar.ButtonInactiveForegroundColor = new Color() { A = 255, R = 220, G = 220, B = 255 };
 
-            Content.Navigate(typeof(WeekView));
-
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) => {
                 if (canGoBack) {
                     Content.GoBack();
@@ -69,15 +65,15 @@ namespace Rozvrh {
                 //NotificationManager.CreateTaskNotification(Data.tasks[0]);
                 //NotificationManager.CreateClassNotification(Data.classInstances[0]);
             }
+
+            Content.Navigate(typeof(WeekView));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {
-                    Task t = Data.tasks.Find(x => x.uid == ld.data);
-                    if (t != null)
-                        Content.Navigate(typeof(AddTask), t);
+                    Content.Navigate(typeof(AddTask), ld.data);
                 }
 
             }
