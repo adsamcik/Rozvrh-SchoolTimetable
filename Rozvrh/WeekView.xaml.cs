@@ -23,11 +23,11 @@ namespace Rozvrh {
                 week[(int)@class.day].Add(new DisplayClass(@class));
 
             foreach (var task in Data.tasks)
-                if ((int)task.when.DayOfWeek <= 5 && (int)task.when.DayOfWeek > 0)
-                    week[(int)task.when.DayOfWeek - 1].Add(new DisplayClass(task));
+                if ((int)task.deadline.DayOfWeek <= 5 && (int)task.deadline.DayOfWeek > 0)
+                    week[(int)task.deadline.DayOfWeek - 1].Add(new DisplayClass(task));
 
             for (int i = 0; i < week.Length; i++)
-                week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.when.TimeOfDay).ToList();
+                week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.deadline.TimeOfDay).ToList();
 
             resources = Resources;
 

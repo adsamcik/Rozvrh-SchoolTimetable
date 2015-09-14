@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.Threading;
-using System.Globalization;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -21,7 +19,7 @@ namespace Rozvrh {
         bool canGoBack { get { return (Content.CanGoBack && Content.SourcePageType != typeof(Agenda) && Content.SourcePageType != typeof(WeekView)); } }
 
         public Main() {
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "cs";
+            //Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "cs";
             this.InitializeComponent();
             instance = this;
 
@@ -62,6 +60,12 @@ namespace Rozvrh {
 
             foreach (var link in _displayStyles)
                 link.Label = resourceLoader.GetString(link.Label);
+
+            if (Data.tasks.Count > 0) {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                NotificationManager.CreateTaskNotification(Data.tasks[0]);
+                //NotificationManager.CreateClassNotification(Data.classInstances[0]);
+            }
         }
 
         private void NavLinksList_ItemClick(object sender, ItemClickEventArgs e) {
@@ -95,6 +99,7 @@ namespace Rozvrh {
             else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
+
     }
 
     public class NavLink {

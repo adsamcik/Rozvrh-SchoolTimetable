@@ -36,7 +36,7 @@ namespace Rozvrh {
             if (taskInstance != null) {
                 taskInstance.title = textBoxTaskTitle.Text;
                 taskInstance.description = textBoxDescription.Text;
-                taskInstance.when = dateTime;
+                taskInstance.deadline = dateTime;
                 taskInstance.notifyInDays = (int)sliderNotify.Value;
                 taskInstance.classTarget = (Class)comboBoxClass.SelectedItem;
             }
@@ -59,8 +59,8 @@ namespace Rozvrh {
             if (e.Parameter != null) {
                 taskInstance = (Task)e.Parameter;
                 textBoxTaskTitle.Text = taskInstance.title;
-                datePickerDeadline.Date = taskInstance.when.Date;
-                timePickerDeadline.Time = taskInstance.when.TimeOfDay;
+                datePickerDeadline.Date = taskInstance.deadline.Date;
+                timePickerDeadline.Time = taskInstance.deadline.TimeOfDay;
                 comboBoxClass.SelectedIndex = Data.classes.FindIndex(x => x == taskInstance.classTarget);
                 sliderNotify.Value = taskInstance.notifyInDays;
                 textBoxDescription.Text = taskInstance.description;
