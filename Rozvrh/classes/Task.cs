@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Rozvrh {
         public Class classTarget;
         public int notifyInDays;
 
+        [JsonIgnore]
         public string deadlineString { get { return deadline.ToString(@"dddd dd\.MMMM HH\:mm"); } }
 
         public Task(string title, string description, DateTime deadline, int notifyInDays = 0, Class classTarget = null, string uid = "") {

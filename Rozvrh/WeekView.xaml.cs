@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
+using System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -16,6 +17,7 @@ namespace Rozvrh {
 
         public WeekView() {
             resources = Resources;
+            DateTime now = DateTime.Now;
 
             for (int i = 0; i < week.Length; i++)
                 week[i] = new List<DisplayClass>();
@@ -23,9 +25,18 @@ namespace Rozvrh {
             foreach (var @class in Data.classInstances)
                 week[(int)@class.day].Add(new DisplayClass(@class));
 
-            foreach (var task in Data.tasks)
-                if ((int)task.deadline.DayOfWeek <= 5 && (int)task.deadline.DayOfWeek > 0)
-                    week[(int)task.deadline.DayOfWeek - 1].Add(new DisplayClass(task));
+            for (int i = 0; i < Data.tasks.Count; i++) {
+                Task task = Data.tasks[i];
+                if ((int)task.deadline.DayOfWeek <= 5 && (int)task.deadline.DayOfWeek > 0) {
+                    if (task.deadline < now) {
+                        Data.ArchiveTask(task);
+                        i--;
+                    }
+                    else
+                        week[(int)task.deadline.DayOfWeek - 1].Add(new DisplayClass(task));
+                }
+            }
+               
 
             for (int i = 0; i < week.Length; i++)
                 week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.deadline.TimeOfDay).ToList();

@@ -16,6 +16,7 @@ namespace Rozvrh {
         public string classTypeString { get { return Data.loader.GetString("Class" + classType.ToString()); } }
         [JsonIgnore]
         public string fromToString { get { return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm"); } }
+        [JsonIgnore]
         public string nextFullString { get { return Next.ToString(@"dddd dd\.MMMM HH\:mm"); } }
         [JsonIgnore]
         public DateTime Next { get { return Extensions.WhenIsNext(this); } }

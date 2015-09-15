@@ -45,11 +45,19 @@ namespace Rozvrh {
             dataStore.Save();
         }
 
+        public static void ArchiveTask(Task task) {
+            int index = tasks.FindIndex(x => x.uid == task.uid);
+            dataStore.archivedTasks.Add(tasks[index]);
+            tasks.RemoveAt(index);
+            dataStore.Save();
+        }
+
         class DataStore {
             public List<Teacher> teachers = new List<Teacher>();
             public List<Class> classes = new List<Class>();
             public List<ClassInstance> classInstances = new List<ClassInstance>();
             public List<Task> tasks = new List<Task>();
+            public List<Task> archivedTasks = new List<Task>();
 
             public async void Save() {
                 StorageFile dataFile = await roamingFolder.CreateFileAsync("dataFile", CreationCollisionOption.ReplaceExisting);
@@ -73,6 +81,7 @@ namespace Rozvrh {
                 classInstances.Clear();
                 Save();
             }
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Rozvrh {
         [JsonIgnore]
         public string fullName { get { return (!string.IsNullOrWhiteSpace(degree) ? degree + " " : "") + name + " " + surname; } }
         
+        [JsonIgnore]
         public string classes { get {
                 List<ClassInstance> cInstance = Data.classInstances.FindAll(x => x.teacher == this).DistinctBy(x => new { x.classData, x.classType}).ToList();
                 string result = "";

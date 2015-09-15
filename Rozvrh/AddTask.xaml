@@ -8,20 +8,20 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Margin="0,0,-20,50" VerticalScrollBarVisibility="Auto">
-            <RelativePanel>
+        <ScrollViewer Margin="0,0,0,50" VerticalScrollBarVisibility="Auto" IsHorizontalScrollChainingEnabled="False" IsVerticalScrollChainingEnabled="False">
+            <RelativePanel Margin="0,0,20,0">
                 <TextBlock x:Name="TaskTitle" x:Uid="TaskTitle" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Nazev" VerticalAlignment="Top" RelativePanel.AlignTopWithPanel="True"/>
-                <TextBox x:Name="textBoxTaskTitle" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="TaskTitle"/>
+                <TextBox x:Name="textBoxTaskTitle" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="TaskTitle"/>
                 <TextBlock x:Name="DeadlineDateTitle" x:Uid="DeadlineDateTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Deadline" VerticalAlignment="Top" RelativePanel.Below="textBoxTaskTitle"/>
-                <DatePicker x:Name="datePickerDeadline" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="DeadlineDateTitle" DayFormat="{}{day.integer} {dayofweek.full}" YearFormat="{}{year.full}" YearVisible="False"/>
-                <TimePicker x:Name="timePickerDeadline" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="datePickerDeadline"/>
+                <DatePicker x:Name="datePickerDeadline" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="DeadlineDateTitle" DayFormat="{}{day.integer} {dayofweek.full}" YearFormat="{}{year.full}" YearVisible="False"/>
+                <TimePicker x:Name="timePickerDeadline" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="datePickerDeadline"/>
                 
                 <TextBlock x:Name="ClassInstanceTitle" x:Uid="ClassTypeTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Predmet" VerticalAlignment="Top" RelativePanel.Below="timePickerDeadline"/>
-                <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="ClassInstanceTitle"/>
+                <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="ClassInstanceTitle"/>
                 <TextBlock x:Name="NotifyTitle" x:Uid="NotifyTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Upozorneni" VerticalAlignment="Top" RelativePanel.Below="comboBoxClass"/>
-                <Slider x:Name="sliderNotify" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="NotifyTitle" Maximum="10" LargeChange="2"/>
+                <Slider x:Name="sliderNotify" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="NotifyTitle" Maximum="10" LargeChange="2"/>
                 <TextBlock x:Name="DescriptionTitle" x:Uid="DescriptionTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Popis" VerticalAlignment="Top" RelativePanel.Below="sliderNotify"/>
-                <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="300" RelativePanel.Below="DescriptionTitle" AcceptsReturn="True"/>
+                <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="DescriptionTitle" AcceptsReturn="True" TextWrapping="Wrap"/>
             </RelativePanel>
         </ScrollViewer>
         <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Pridat" HorizontalAlignment="Left" Margin="200,0,0,10" VerticalAlignment="Bottom" Click="Ok_Click" Width="100" Height="30"/>
