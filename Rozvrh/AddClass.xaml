@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <TextBlock x:Name="ClassNameTitle" x:Uid="ClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nazev" VerticalAlignment="Top" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
-            <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,5,-75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="375" RelativePanel.Below="ClassNameTitle"/>
+            <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="10,5,-75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="375" RelativePanel.Below="ClassNameTitle" BorderThickness="2"/>
             <TextBlock x:Name="ShortClassNameTitle" x:Uid="ShortClassName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Zkratka" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.45" RelativePanel.Below="textBoxName"/>
             <TextBox x:Name="textBoxShortName" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" RelativePanel.Below="ShortClassNameTitle"/>
         </RelativePanel>

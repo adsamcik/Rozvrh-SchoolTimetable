@@ -141,6 +141,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="classes\Teacher.cs" />
     <Compile Include="classes\WeekType.cs" />
+    <Compile Include="TeacherList.xaml.cs">
+      <DependentUpon>TeacherList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WeekView.xaml.cs">
       <DependentUpon>WeekView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
     <Page Include="Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>

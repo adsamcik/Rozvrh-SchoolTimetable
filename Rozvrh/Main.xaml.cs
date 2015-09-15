@@ -119,7 +119,7 @@ namespace Rozvrh {
              new NavLink() { Label = "AddTask", Symbol = Symbol.Bookmarks, Page = typeof(AddTask) },
             new NavLink() { Label = "Add", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
             new NavLink() { Label = "ClassClass", Symbol = Symbol.Library, Page = typeof(AddClass) },
-            new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(AddTeacher) }
+            new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(TeacherList) }
         };
 
         public ObservableCollection<NavLink> DisplayStyles { get { return _displayStyles; } }
