@@ -29,34 +29,48 @@ namespace Rozvrh {
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e) {
-            DateTimeOffset dto = datePickerDeadline.Date;
-            TimeSpan ts = timePickerDeadline.Time;
-            DateTime dateTime = new DateTime(dto.Year, dto.Month, dto.Day, ts.Hours, ts.Minutes, ts.Seconds);
+            if (Validate()) {
+                DateTimeOffset dto = datePickerDeadline.Date;
+                TimeSpan ts = timePickerDeadline.Time;
+                DateTime dateTime = new DateTime(dto.Year, dto.Month, dto.Day, ts.Hours, ts.Minutes, ts.Seconds);
 
-            if (taskInstance != null) {
-                taskInstance = Data.tasks.Find(x => x.uid == taskInstance.uid);
-                taskInstance.title = textBoxTaskTitle.Text;
-                taskInstance.description = textBoxDescription.Text;
-                taskInstance.deadline = dateTime;
-                taskInstance.notifyInDays = (int)sliderNotify.Value;
-                taskInstance.classTarget = (Class)comboBoxClass.SelectedItem;
-                Data.Save();
+                if (taskInstance != null) {
+                    taskInstance = Data.tasks.Find(x => x.uid == taskInstance.uid);
+                    taskInstance.title = textBoxTaskTitle.Text;
+                    taskInstance.description = textBoxDescription.Text;
+                    taskInstance.deadline = dateTime;
+                    taskInstance.notifyInDays = (int)sliderNotify.Value;
+                    taskInstance.classTarget = (Class)comboBoxClass.SelectedItem;
+                    Data.Save();
+                }
+                else {
+                    taskInstance = new Task(
+                        textBoxTaskTitle.Text,
+                        textBoxDescription.Text,
+                        dateTime,
+                        (int)sliderNotify.Value,
+                        (Class)comboBoxClass.SelectedItem);
+                    Data.AddTask(taskInstance);
+                }
+
+                NotificationManager.RemoveScheduledNotification(taskInstance);
+                if (sliderNotify.Value != 0)
+                    NotificationManager.CreateTileNotification(taskInstance);
+
+                Frame.GoBack();
             }
-            else {
-                taskInstance = new Task(
-                    textBoxTaskTitle.Text,
-                    textBoxDescription.Text,
-                    dateTime,
-                    (int)sliderNotify.Value,
-                    (Class)comboBoxClass.SelectedItem);
-                Data.AddTask(taskInstance);
+        }
+
+        bool Validate() {
+            bool isValid =true;
+            if (string.IsNullOrWhiteSpace(textBoxTaskTitle.Text)) {
+                Extensions.Invalid(textBoxTaskTitle);
+                isValid = false;
             }
+            else
+                Extensions.Valid(textBoxTaskTitle);
 
-            NotificationManager.RemoveScheduledNotification(taskInstance);
-            if (sliderNotify.Value != 0)
-                NotificationManager.CreateTileNotification(taskInstance);
-
-            Frame.GoBack();
+            return isValid;
         }
 
         Task taskInstance;

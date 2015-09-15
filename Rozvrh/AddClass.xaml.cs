@@ -25,9 +25,31 @@ namespace Rozvrh {
             this.InitializeComponent();
         }
 
+        bool Validate() {
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(textBoxName.Text)) {
+                Extensions.Invalid(textBoxName);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(textBoxName);
+
+            if (string.IsNullOrWhiteSpace(textBoxShortName.Text)) {
+                Extensions.Invalid(textBoxShortName);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(textBoxShortName);
+
+            return isValid;
+        }
+
         private void Save_Click(object sender, RoutedEventArgs e) {
-            Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text));
-            Frame.GoBack();
+            if (Validate()) {
+                Data.AddClass(new Class(textBoxName.Text, textBoxShortName.Text));
+                Frame.GoBack();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {

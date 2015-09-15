@@ -12,9 +12,31 @@ namespace Rozvrh {
             this.InitializeComponent();
         }
 
+        bool Validate() {
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(textBoxName.Text)) {
+                Extensions.Invalid(textBoxName);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(textBoxName);
+
+            if (string.IsNullOrWhiteSpace(textBoxSurname.Text)) {
+                Extensions.Invalid(textBoxSurname);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(textBoxSurname);
+
+            return isValid;
+        }
+
         private void Save_Click(object sender, RoutedEventArgs e) {
-            Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
-            Frame.GoBack();
+            if (Validate()) {
+                Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
+                Frame.GoBack();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {

@@ -4,6 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Rozvrh {
     class Extensions {
@@ -49,6 +53,41 @@ namespace Rozvrh {
                     now = now.AddDays(7);
 
             return new DateTime(now.Year, now.Month, now.Day, classInstance.from.Hours, classInstance.from.Minutes, classInstance.from.Seconds);
+        }
+
+        static Brush defaultBrush = new SolidColorBrush(Color.FromArgb(40, 0, 0, 0));
+        static Thickness defaultThickness = new Thickness(2);
+        static Brush invalidBrush = new SolidColorBrush(Colors.Red);
+        static Thickness invalidThickness = new Thickness(4);
+
+        public static void Invalid(ComboBox comboBox) {
+            comboBox.BorderBrush = invalidBrush;
+            comboBox.BorderThickness = invalidThickness;
+        }
+
+        public static void Invalid(TextBox textBox) {
+            textBox.BorderBrush = invalidBrush;
+            textBox.BorderThickness = invalidThickness;
+        }
+
+        public static void Invalid(TimePicker timePicker) {
+            timePicker.BorderBrush = invalidBrush;
+            timePicker.BorderThickness = invalidThickness;
+        }
+
+        public static void Valid(ComboBox comboBox) {
+            comboBox.BorderBrush = defaultBrush;
+            comboBox.BorderThickness = defaultThickness;
+        }
+
+        public static void Valid(TextBox textBox) {
+            textBox.BorderBrush = defaultBrush;
+            textBox.BorderThickness = defaultThickness;
+        }
+
+        public static void Valid(TimePicker timePicker) {
+            timePicker.BorderBrush = defaultBrush;
+            timePicker.BorderThickness = defaultThickness;
         }
     }
 }

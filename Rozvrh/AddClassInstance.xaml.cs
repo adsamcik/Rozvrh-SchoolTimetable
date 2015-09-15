@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -54,6 +55,48 @@ namespace Rozvrh {
             comboBoxTeacher.ItemsSource = Data.teachers;
         }
 
+        bool Validate() {
+            bool isValid = true;
+
+            if (comboBoxClass.SelectedValue == null) {
+                Extensions.Invalid(comboBoxClass);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(comboBoxClass);
+
+            if (comboBoxClassType.SelectedValue == null) {
+                Extensions.Invalid(comboBoxClassType);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(comboBoxClassType);
+
+            if (comboBoxWeek.SelectedValue == null) {
+                Extensions.Invalid(comboBoxWeek);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(comboBoxWeek);
+
+            //During testing didn't worked visualy, so disabled for now
+            /*if (timePickerTo.Time < timePickerFrom.Time) {
+                Extensions.Invalid(timePickerTo);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(timePickerTo);*/
+
+            if (comboBoxDay.SelectedValue == null) {
+                Extensions.Invalid(comboBoxDay);
+                isValid = false;
+            }
+            else
+                Extensions.Valid(comboBoxDay);
+
+            return isValid;
+        }
+
         ClassInstance editObject;
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
@@ -74,22 +117,24 @@ namespace Rozvrh {
 
 
         private void Ok_Click(object sender, RoutedEventArgs e) {
-            NavigationCacheMode = NavigationCacheMode.Disabled;
-            if (editObject != null) {
-                editObject.classData = (Class)comboBoxClass.SelectedItem;
-                editObject.classType = (ClassType)comboBoxClassType.SelectedIndex;
-                editObject.weekType = (WeekType)comboBoxWeek.SelectedIndex;
-                editObject.from = timePickerFrom.Time;
-                editObject.to = timePickerTo.Time;
-                editObject.room = textBoxRoom.Text;
-                editObject.day = (WeekDay)comboBoxDay.SelectedIndex;
-                editObject.teacher = (Teacher)comboBoxTeacher.SelectedItem;
-                Data.Save();
-            }
-            else
-                Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
+            if (Validate()) {
+                NavigationCacheMode = NavigationCacheMode.Disabled;
+                if (editObject != null) {
+                    editObject.classData = (Class)comboBoxClass.SelectedItem;
+                    editObject.classType = (ClassType)comboBoxClassType.SelectedIndex;
+                    editObject.weekType = (WeekType)comboBoxWeek.SelectedIndex;
+                    editObject.from = timePickerFrom.Time;
+                    editObject.to = timePickerTo.Time;
+                    editObject.room = textBoxRoom.Text;
+                    editObject.day = (WeekDay)comboBoxDay.SelectedIndex;
+                    editObject.teacher = (Teacher)comboBoxTeacher.SelectedItem;
+                    Data.Save();
+                }
+                else
+                    Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
 
-            Frame.GoBack();
+                Frame.GoBack();
+            }
         }
 
         private void GoBack_Trigger(object sender, BackRequestedEventArgs e) {
