@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Diagnostics;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -43,6 +45,7 @@ namespace Rozvrh {
                 textBoxSurname.Text = teacherInstance.surname;
                 textBoxEmail.Text = teacherInstance.email;
                 textBoxPhone.Text = teacherInstance.phone;
+                buttonDelete.Visibility = Visibility.Visible;
             }
         }
 
@@ -63,6 +66,15 @@ namespace Rozvrh {
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {
+            Frame.GoBack();
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e) {
+            FlyoutBase.ShowAttachedFlyout(buttonDelete);
+        }
+
+        private void buttonDeleteConfirm_Click(object sender, RoutedEventArgs e) {
+            Data.DeleteTeacher(teacherInstance);
             Frame.GoBack();
         }
     }

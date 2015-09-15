@@ -117,8 +117,8 @@ namespace Rozvrh {
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
              new NavLink() { Label = "AddTask", Symbol = Symbol.Bookmarks, Page = typeof(AddTask) },
-            new NavLink() { Label = "Add", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
-            new NavLink() { Label = "ClassClass", Symbol = Symbol.Library, Page = typeof(AddClass) },
+            new NavLink() { Label = "AddClass", Symbol = Symbol.Add, Page = typeof(AddClassInstance)  },
+            new NavLink() { Label = "ClassClass", Symbol = Symbol.Library, Page = typeof(ClassList) },
             new NavLink() { Label = "Teachers", Symbol = Symbol.People, Page = typeof(TeacherList) }
         };
 

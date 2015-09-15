@@ -112,6 +112,7 @@ namespace Rozvrh {
                 comboBoxDay.SelectedIndex = (int)cInstance.day;
                 comboBoxTeacher.SelectedIndex = Data.teachers.FindIndex(x => x == cInstance.teacher);
                 editObject = cInstance;
+                buttonDelete.Visibility = Visibility.Visible;
             }
         }
 
@@ -156,6 +157,15 @@ namespace Rozvrh {
         private void AddTeacher_Click(object sender, RoutedEventArgs e) {
             NavigationCacheMode = NavigationCacheMode.Required;
             Frame.Navigate(typeof(AddTeacher), Frame);
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e) {
+            FlyoutBase.ShowAttachedFlyout(buttonDelete);
+        }
+
+        private void buttonDeleteConfirm_Click(object sender, RoutedEventArgs e) {
+            Data.DeleteClassInstance(editObject);
+            Frame.GoBack();
         }
     }
 }

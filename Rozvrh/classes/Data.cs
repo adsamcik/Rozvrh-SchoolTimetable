@@ -52,6 +52,26 @@ namespace Rozvrh {
             dataStore.Save();
         }
 
+        public static void DeleteTeacher(Teacher teacher) {
+            dataStore.teachers.Remove(teacher);
+            dataStore.Save();
+        }
+
+        public static void DeleteTask(Task task) {
+            dataStore.tasks.Remove(task);
+            dataStore.Save();
+        }
+
+        public static void DeleteClass(Class Class) {
+            dataStore.classes.Remove(Class);
+            dataStore.Save();
+        } 
+
+        public static void DeleteClassInstance(ClassInstance classInstance) {
+            dataStore.classInstances.Remove(classInstance);
+            dataStore.Save();
+        }
+
         class DataStore {
             public List<Teacher> teachers = new List<Teacher>();
             public List<Class> classes = new List<Class>();

@@ -20,7 +20,15 @@
             <TextBlock x:Uid="PhoneTitle" x:Name="PhoneTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top" RenderTransformOrigin="0.389,0.5" RelativePanel.Below="textBoxEmail"/>
             <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="10,2,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="374" RelativePanel.Below="PhoneTitle"/>
         </RelativePanel>
-        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="285,0,0,10" VerticalAlignment="Bottom" Click="Save_Click" Width="100" Height="30"/>
-        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" Click="Cancel_Click" Width="100" Height="30"/>
+        <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Ulozit" HorizontalAlignment="Left" Margin="285,0,0,10" VerticalAlignment="Bottom" Click="Save_Click" Width="100" Height="30" Background="#33000000"/>
+        <Button x:Name="buttonDelete" x:Uid="buttonDelete" Content="Smazat" HorizontalAlignment="Left" Margin="120,0,0,10"  VerticalAlignment="Bottom" Width="100" Height="30" Background="#33000000" Click="buttonDelete_Click" Visibility="Collapsed">
+            <FlyoutBase.AttachedFlyout>
+                <Flyout>
+                    <Button x:Uid="buttonDelete" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="buttonDeleteConfirm_Click" />
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Button>
+
+        <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" Click="Cancel_Click" Width="100" Height="30" Background="#33000000"/>
     </Grid>
 </Page>

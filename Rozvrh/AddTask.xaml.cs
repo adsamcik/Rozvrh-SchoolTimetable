@@ -84,12 +84,22 @@ namespace Rozvrh {
                 comboBoxClass.SelectedIndex = Data.classes.FindIndex(x => x == taskInstance.classTarget);
                 sliderNotify.Value = taskInstance.notifyInDays;
                 textBoxDescription.Text = taskInstance.description;
+                buttonDelete.Visibility = Visibility.Visible;
             }
 
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {
             Frame.GoBack();
+        }
+
+        private void buttonDeleteConfirm_Click(object sender, RoutedEventArgs e) {
+            Data.DeleteTask(Data.tasks.Find(x => x.uid == taskInstance.uid));
+            Frame.GoBack();
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e) {
+            FlyoutBase.ShowAttachedFlyout(buttonDelete);
         }
     }
 }

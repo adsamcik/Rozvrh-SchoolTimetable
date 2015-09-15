@@ -18,6 +18,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <GridView ItemTemplate="{StaticResource standardTeacherTemplate}" ItemsSource="{x:Bind teacherList}" ItemClick="GridView_ItemClick" IsItemClickEnabled="True"/>
+        <GridView ItemTemplate="{StaticResource standardTeacherTemplate}" ItemsSource="{x:Bind teacherList}" ItemClick="GridView_ItemClick" IsItemClickEnabled="True" Margin="0,50,0,0"/>
+        <Button Content="{x:Bind addClassString}"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="AddClassButton_Click"/>
     </Grid>
 </Page>

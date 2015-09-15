@@ -247,7 +247,7 @@
   <data name="TeacherTitle.Text" xml:space="preserve">
     <value>Učitel</value>
   </data>
-  <data name="AddClassInstance" xml:space="preserve">
+  <data name="AddClass" xml:space="preserve">
     <value>Přidat hodinu</value>
   </data>
   <data name="AddTask" xml:space="preserve">
@@ -264,5 +264,11 @@
   </data>
   <data name="TaskTitle.Text" xml:space="preserve">
     <value>Název</value>
+  </data>
+  <data name="buttonDelete.Content" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="AddTeacher" xml:space="preserve">
+    <value>Přidat učitele</value>
   </data>
 </root>

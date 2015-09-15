@@ -32,6 +32,13 @@
         </ScrollViewer>
 
         <Button x:Name="buttonSave" x:Uid="buttonSave" Content="Přidat" HorizontalAlignment="Left" Margin="315,0,0,10" VerticalAlignment="Bottom" Click="Ok_Click" Width="100" Height="30"/>
+        <Button x:Name="buttonDelete" x:Uid="buttonDelete" Content="Smazat" HorizontalAlignment="Left" Margin="120,0,0,10"  VerticalAlignment="Bottom" Width="100" Height="30" Background="#33000000" Click="buttonDelete_Click" Visibility="Collapsed">
+            <FlyoutBase.AttachedFlyout>
+                <Flyout>
+                    <Button x:Uid="buttonDelete" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="buttonDeleteConfirm_Click" />
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Button>
         <Button x:Name="buttonCancel" x:Uid="buttonCancel" Content="Zrusit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="Cancel_Click" Width="100" Height="30"/>
     </Grid>
 </Page>
