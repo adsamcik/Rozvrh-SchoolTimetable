@@ -43,14 +43,18 @@ namespace Rozvrh {
                 Data.Save();
             }
             else {
-                Data.AddTask(new Task(
+                taskInstance = new Task(
                     textBoxTaskTitle.Text,
                     textBoxDescription.Text,
                     dateTime,
                     (int)sliderNotify.Value,
-                    (Class)comboBoxClass.SelectedItem
-                ));
+                    (Class)comboBoxClass.SelectedItem);
+                Data.AddTask(taskInstance);
             }
+
+            NotificationManager.RemoveScheduledNotification(taskInstance);
+            if (sliderNotify.Value != 0)
+                NotificationManager.CreateTaskNotification(taskInstance);
 
             Frame.GoBack();
         }

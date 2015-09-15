@@ -27,6 +27,18 @@ namespace Rozvrh {
             //ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
+        public static void RemoveScheduledNotification(Task taskInstance) {
+            var notifier = ToastNotificationManager.CreateToastNotifier();
+            var scheduled = notifier.GetScheduledToastNotifications();
+
+            for (int i = 0; i < scheduled.Count; i++) {
+                if(scheduled[i].Id == taskInstance.uid.Substring(0,12)) {
+                    notifier.RemoveFromSchedule(scheduled[i]);
+                    break;
+                }
+            }
+        }
+
         public static void CreateClassNotification(ClassInstance classInstance) {
             var tile = AdaptiveTile.CreateTile();
             var binding = TileBinding.Create(TemplateType.TileWide);
