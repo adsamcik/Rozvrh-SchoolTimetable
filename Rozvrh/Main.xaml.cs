@@ -72,12 +72,12 @@ namespace Rozvrh {
             }
 
             if (!hasNotification) {
-                int value = -1;
+                long value = -1;
                 int key = 0;
                 for (int i = 0; i < Data.classInstances.Count; i++) {
-                    long diff = Extensions.WhenIsNext(Data.classInstances[i]).Ticks - now.Ticks;
-                    if (value == -1 || (diff > 0 && (int)diff < value)) {
-                        value = (int)diff;
+                    TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i]) - now;
+                    if (value == -1 || (diff.Ticks > 0 && diff.Ticks < value)) {
+                        value = diff.Ticks;
                         key = i;
                     }
                 }
