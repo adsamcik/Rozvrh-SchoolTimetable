@@ -31,11 +31,11 @@ namespace Rozvrh {
             comboBoxClass.ItemsSource = Data.classes;
 
             string[] classTypes = new string[5];
-            classTypes[0] = Data.loader.GetString("ClassStandard");
-            classTypes[1] = Data.loader.GetString("ClassLecture");
-            classTypes[2] = Data.loader.GetString("ClassExercise");
-            classTypes[3] = Data.loader.GetString("ClassLab");
-            classTypes[4] = Data.loader.GetString("ClassWorkshop");
+            classTypes[0] = Data.loader.GetString("Standard");
+            classTypes[1] = Data.loader.GetString("Lecture");
+            classTypes[2] = Data.loader.GetString("Exercise");
+            classTypes[3] = Data.loader.GetString("Lab");
+            classTypes[4] = Data.loader.GetString("Workshop");
             comboBoxClassType.ItemsSource = classTypes;
 
             string[] days = new string[5];
