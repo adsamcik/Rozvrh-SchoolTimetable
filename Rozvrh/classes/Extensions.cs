@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace Rozvrh {
-    class Extensions {
+   public static class Extensions {
         public static int GetIso8601WeekOfYear(DateTime date) {
             // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
             // be the same week# as whatever Thursday, Friday or Saturday are,
@@ -42,7 +42,7 @@ namespace Rozvrh {
             else
                 expireIn = currentDay <= (int)classInstance.day ?
                     (int)classInstance.day - currentDay :
-                    6 - currentDay + (int)classInstance.day;
+                    7 - currentDay + (int)classInstance.day;
 
             now = now.AddDays(expireIn);
 
@@ -88,6 +88,27 @@ namespace Rozvrh {
         public static void Valid(TimePicker timePicker) {
             timePicker.BorderBrush = defaultBrush;
             timePicker.BorderThickness = defaultThickness;
+        }
+
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector) {
+            var known = new HashSet<TKey>();
+            return source.Where(element => known.Add(keySelector(element)));
+        }
+    }
+
+    public class ClassInstanceTeacherComparer : IEqualityComparer<ClassInstance> {
+
+        private Func<ClassInstance, object> _funcDistinct;
+        public ClassInstanceTeacherComparer(Func<ClassInstance, object> funcDistinct) {
+            this._funcDistinct = funcDistinct;
+        }
+
+        public bool Equals(ClassInstance x, ClassInstance y) {
+            return _funcDistinct(x).Equals(_funcDistinct(y));
+        }
+
+        public int GetHashCode(ClassInstance obj) {
+            return obj.GetHashCode();
         }
     }
 }

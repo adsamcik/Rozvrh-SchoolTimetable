@@ -11,15 +11,16 @@ namespace Rozvrh {
     /// </summary>
     public sealed partial class WeekView : Page {
         public static Windows.UI.Xaml.ResourceDictionary resources;
-        List<ClassInstance> classInstances { get { return Data.classInstances; } }
 
         List<DisplayClass>[] week = new List<DisplayClass>[5];
 
         public WeekView() {
+            resources = Resources;
+
             for (int i = 0; i < week.Length; i++)
                 week[i] = new List<DisplayClass>();
 
-            foreach (var @class in classInstances)
+            foreach (var @class in Data.classInstances)
                 week[(int)@class.day].Add(new DisplayClass(@class));
 
             foreach (var task in Data.tasks)
@@ -28,8 +29,6 @@ namespace Rozvrh {
 
             for (int i = 0; i < week.Length; i++)
                 week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.deadline.TimeOfDay).ToList();
-
-            resources = Resources;
 
             this.InitializeComponent();
         }

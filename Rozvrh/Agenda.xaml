@@ -6,9 +6,43 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <local:AgendaStyleSelector x:Key="AgendaStyleSelector" />
+        <DataTemplate x:Key="standardClassTemplate" x:DataType="local:DisplayClass">
+            <Grid Height="150" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="{ThemeResource AppBarBackgroundThemeBrush}" />
+                <TextBlock Text="{x:Bind classInstance.classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Stretch"/>
+                <TextBlock Text="{x:Bind classInstance.nextFullString}" Margin="10,10,0,10" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind classInstance.room}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBlock Text="{x:Bind classInstance.teacher}" HorizontalAlignment="Left" Margin="10,30,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBlock Text="{x:Bind classInstance.classTypeString}" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="standardTaskTemplate" x:DataType="local:DisplayClass">
+            <Grid Height="150" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="{ThemeResource AppBarBackgroundThemeBrush}" />
+                <TextBlock Text="{x:Bind taskInstance.title}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Stretch"/>
+                <TextBlock Text="{x:Bind taskInstance.deadlineString}" Margin="10,10,0,10" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind taskInstance.classTarget}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,10,10,10" Grid.Row="0" TextWrapping="Wrap"/>
+                <TextBlock Text="{x:Bind taskInstance.description}" Margin="10,5,10,5" Grid.Row="1" TextWrapping="Wrap" MaxLines="4" FontSize="14.667"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1920" RenderTransformOrigin="0.479,0.482"/>
-
+        <ListView ItemTemplateSelector="{StaticResource AgendaStyleSelector}" ItemsSource="{x:Bind upcomingList}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ItemClick="ListView_ItemClick" Padding="-15,0,0,0" IsItemClickEnabled="True" IsMultiSelectCheckBoxEnabled="False" Width="600" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </Page>

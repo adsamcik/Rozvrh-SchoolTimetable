@@ -6,18 +6,19 @@ namespace Rozvrh {
         public string uid;
         public Class classData;
         public ClassType classType;
-        [JsonIgnore]
-        public string classTypeString { get { return Data.loader.GetString("Class" + classType.ToString()); } }
-
         public TimeSpan from, to;
-
-        [JsonIgnore]
-        public string fromToString { get { return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm"); } }
-
         public string room;
         public WeekDay day;
         public WeekType weekType;
         public Teacher teacher;
+
+        [JsonIgnore]
+        public string classTypeString { get { return Data.loader.GetString("Class" + classType.ToString()); } }
+        [JsonIgnore]
+        public string fromToString { get { return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm"); } }
+        public string nextFullString { get { return Next.ToString(@"dddd dd\.MMMM HH\:mm"); } }
+        [JsonIgnore]
+        public DateTime Next { get { return Extensions.WhenIsNext(this); } }
 
         public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher, string uid = "") {
             this.classData = classData;

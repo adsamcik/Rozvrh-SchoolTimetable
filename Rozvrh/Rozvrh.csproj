@@ -121,6 +121,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="classes\AgendaStyleSelector.cs" />
     <Compile Include="classes\Class.cs" />
     <Compile Include="classes\ClassInstance.cs" />
     <Compile Include="classes\ClassType.cs" />

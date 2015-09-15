@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,9 +33,31 @@ namespace Rozvrh {
             return isValid;
         }
 
+        Teacher teacherInstance;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.Parameter != null && e.Parameter.GetType() == typeof(Teacher)) {
+                teacherInstance = (Teacher)e.Parameter;
+                textBoxDegree.Text = teacherInstance.degree;
+                textBoxName.Text = teacherInstance.name;
+                textBoxSurname.Text = teacherInstance.surname;
+                textBoxEmail.Text = teacherInstance.email;
+                textBoxPhone.Text = teacherInstance.phone;
+            }
+        }
+
         private void Save_Click(object sender, RoutedEventArgs e) {
             if (Validate()) {
-                Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
+                if (teacherInstance != null) {
+                    teacherInstance.degree = textBoxDegree.Text;
+                    teacherInstance.name = textBoxName.Text;
+                    teacherInstance.surname = textBoxSurname.Text;
+                    teacherInstance.email = textBoxEmail.Text;
+                    teacherInstance.phone = textBoxPhone.Text;
+                    Data.Save();
+                }
+                else
+                    Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
                 Frame.GoBack();
             }
         }

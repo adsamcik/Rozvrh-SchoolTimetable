@@ -8,9 +8,6 @@ using Windows.UI.Xaml.Controls;
 
 namespace Rozvrh {
     public class ClassWeekStyleSelector : DataTemplateSelector {
-        public DataTemplate standardClassTemplate { get; set; }
-
-        public DataTemplate wrongWeekClassTemplate { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container) {
             var listItem = (DisplayClass)item;

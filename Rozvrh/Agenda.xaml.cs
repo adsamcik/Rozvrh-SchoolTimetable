@@ -21,9 +21,28 @@ namespace Rozvrh {
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Agenda : Page {
+        public static ResourceDictionary resources;
+        List<DisplayClass> upcomingList = new List<DisplayClass>();
         public Agenda() {
+            resources = Resources;
+
+            foreach (var classInstance in Data.classInstances)
+                upcomingList.Add(new DisplayClass(classInstance));
+
+            foreach (var taskInstance in Data.tasks)
+                upcomingList.Add(new DisplayClass(taskInstance));
+
+            upcomingList = upcomingList.OrderBy(x => x.taskInstance == null ? Extensions.WhenIsNext(x.classInstance) : x.taskInstance.deadline).ToList();
+
             this.InitializeComponent();
-            listView.ItemsSource = Data.classInstances;
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e) {
+            DisplayClass dc = (DisplayClass)e.ClickedItem;
+            if (dc.classInstance != null)
+                Frame.Navigate(typeof(AddClassInstance), dc.classInstance);
+            else if (dc.taskInstance != null)
+                Frame.Navigate(typeof(AddTask), dc.taskInstance);
         }
     }
 }

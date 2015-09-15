@@ -13,7 +13,7 @@ namespace Rozvrh {
         public string fullName { get { return (!string.IsNullOrWhiteSpace(degree) ? degree + " " : "") + name + " " + surname; } }
         
         public string classes { get {
-                List<ClassInstance> cInstance = Data.classInstances.FindAll(x => x.teacher == this);
+                List<ClassInstance> cInstance = Data.classInstances.FindAll(x => x.teacher == this).DistinctBy(x => new { x.classData, x.classType}).ToList();
                 string result = "";
                 foreach (var classInstance in cInstance)
                     result += classInstance.classData.shortName + "(" + Data.loader.GetString(classInstance.classType.ToString()) + "), ";
