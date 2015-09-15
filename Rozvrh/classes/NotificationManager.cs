@@ -7,7 +7,7 @@ using Windows.UI.Notifications;
 
 namespace Rozvrh {
     class NotificationManager {
-        public static void SetNotification(Task taskInstance) {
+        public static void ScheduleToastNotification(Task taskInstance) {
             DateTime notificationTime = taskInstance.deadline.AddDays(-taskInstance.notifyInDays);
             if (notificationTime <= DateTime.Now) return;
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
@@ -39,7 +39,7 @@ namespace Rozvrh {
             }
         }
 
-        public static void CreateClassNotification(ClassInstance classInstance) {
+        public static void CreateTileNotification(ClassInstance classInstance) {
             var tile = AdaptiveTile.CreateTile();
             var binding = TileBinding.Create(TemplateType.TileWide);
             binding.Branding = Branding.None;
@@ -71,12 +71,11 @@ namespace Rozvrh {
             tile.Tiles.Add(binding);
             TileNotification tn = tile.GetNotification();
 
-            tn.ExpirationTime = new DateTimeOffset(WhenIsNextInDays(classInstance));
-            Debug.WriteLine("Expire on " + tn.ExpirationTime);
+            tn.ExpirationTime = new DateTimeOffset(Extensions.WhenIsNext(classInstance));
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
         }
 
-        public static void CreateTaskNotification(Task taskInstance) {
+        public static void CreateTileNotification(Task taskInstance) {
             var tile = AdaptiveTile.CreateTile();
             var binding = TileBinding.Create(TemplateType.TileWide);
             binding.Branding = Branding.None;
@@ -109,24 +108,7 @@ namespace Rozvrh {
             TileNotification tn = tile.GetNotification();
 
             tn.ExpirationTime = new DateTimeOffset(taskInstance.deadline);
-            Debug.WriteLine("Expire on " + tn.ExpirationTime);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
-        }
-
-        static DateTime WhenIsNextInDays(ClassInstance classInstance) {
-            DateTime now = DateTime.Now;
-            int currentDay = (int)now.DayOfWeek - 1;
-            if (currentDay == -1) currentDay = 6;
-
-
-            int expireIn;
-            if (currentDay == (int)classInstance.day)
-                expireIn = classInstance.from > now.TimeOfDay ? 0 : 7;
-            else
-                expireIn = currentDay <= (int)classInstance.day ? (int)classInstance.day - currentDay : 6 - currentDay + (int)classInstance.day;
-            now = now.AddDays(expireIn);
-
-            return new DateTime(now.Year, now.Month, now.Day, classInstance.from.Hours, classInstance.from.Minutes, classInstance.from.Seconds);
         }
     }
 }

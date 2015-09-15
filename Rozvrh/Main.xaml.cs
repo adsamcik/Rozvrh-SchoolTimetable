@@ -59,12 +59,37 @@ namespace Rozvrh {
             foreach (var link in _displayStyles)
                 link.Label = resourceLoader.GetString(link.Label);
 
-            if (Data.tasks.Count > 0) {
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                NotificationManager.SetNotification(Data.tasks[0]);
-                //NotificationManager.CreateTaskNotification(Data.tasks[0]);
-                //NotificationManager.CreateClassNotification(Data.classInstances[0]);
+            DateTime now = DateTime.Now;
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+
+            bool hasNotification = false;
+            for (int i = 0; i < Data.tasks.Count; i++) {
+                if (Data.tasks[i].notifyInDays != 0 && Data.tasks[i].deadline.AddDays(-1.5 * Data.tasks[i].notifyInDays) <= now) {
+                    NotificationManager.CreateTileNotification(Data.tasks[0]);
+                    hasNotification = true;
+                    break;
+                }
             }
+
+            if (!hasNotification) {
+                int value = -1;
+                int key = 0;
+                for (int i = 0; i < Data.classInstances.Count; i++) {
+                    long diff = Extensions.WhenIsNext(Data.classInstances[i]).Ticks - now.Ticks;
+                    if (value == -1 || (diff > 0 && (int)diff < value)) {
+                        value = (int)diff;
+                        key = i;
+                    }
+                }
+
+                if (value != -1)
+                    NotificationManager.CreateTileNotification(Data.classInstances[key]);
+            }
+
+            //TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+            //NotificationManager.ScheduleToastNotification(Data.tasks[0]);
+            //NotificationManager.CreateTaskNotification(Data.tasks[0]);
+            //NotificationManager.CreateClassNotification(Data.classInstances[0]);
 
             Content.Navigate(typeof(WeekView));
         }

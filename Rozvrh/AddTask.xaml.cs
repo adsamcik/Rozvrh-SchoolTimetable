@@ -54,7 +54,7 @@ namespace Rozvrh {
 
             NotificationManager.RemoveScheduledNotification(taskInstance);
             if (sliderNotify.Value != 0)
-                NotificationManager.CreateTaskNotification(taskInstance);
+                NotificationManager.CreateTileNotification(taskInstance);
 
             Frame.GoBack();
         }

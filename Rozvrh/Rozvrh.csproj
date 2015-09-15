@@ -127,6 +127,7 @@
     <Compile Include="classes\Data.cs" />
     <Compile Include="classes\DisplayClass.cs" />
     <Compile Include="classes\Enums.cs" />
+    <Compile Include="classes\Extensions.cs" />
     <Compile Include="classes\LaunchData.cs" />
     <Compile Include="classes\Task.cs" />
     <Compile Include="classes\NotificationManager.cs" />
