@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43275adsamcik.StudentsAssistent" Publisher="CN=36E00FAB-A80D-44A2-B436-AB50ED142FAF" Version="1.1.0.0" />
+  <Identity Name="43275adsamcik.StudentsAssistent" Publisher="CN=36E00FAB-A80D-44A2-B436-AB50ED142FAF" Version="1.2.0.0" />
   <mp:PhoneIdentity PhoneProductId="d886be29-04a3-4038-98b0-da48e458b5d1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Student's Assistent</DisplayName>
@@ -16,6 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="StudentsAssist.App">
       <uap:VisualElements DisplayName="StudentsAssistent" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Student's Assistent will keep track of your classes and homeworks" BackgroundColor="#3c78f0">
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\BadgeLogo.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Student's Assistent">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
@@ -24,6 +25,13 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#3c78f0" />
       </uap:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.LiveTileBackgroundUpdater">
+          <BackgroundTasks>
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

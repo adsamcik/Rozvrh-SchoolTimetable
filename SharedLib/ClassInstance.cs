@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Rozvrh {
+namespace SharedLib {
     public class ClassInstance {
         public string uid;
         public Class classData;

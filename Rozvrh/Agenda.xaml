@@ -9,7 +9,7 @@
     <Page.Resources>
         <local:AgendaStyleSelector x:Key="AgendaStyleSelector" />
         <DataTemplate x:Key="standardClassTemplate" x:DataType="local:DisplayClass">
-            <Grid Height="150" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid Height="130" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>
@@ -26,7 +26,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="standardTaskTemplate" x:DataType="local:DisplayClass">
-            <Grid Height="150" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid Height="130" Width="600" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>

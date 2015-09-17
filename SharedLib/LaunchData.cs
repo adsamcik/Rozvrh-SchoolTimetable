@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rozvrh {
-    class LaunchData {
+namespace SharedLib {
+    public class LaunchData {
         public Type type;
         public string data;
 

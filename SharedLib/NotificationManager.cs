@@ -1,12 +1,12 @@
 ﻿using AdaptiveTileExtensions;
 using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
+using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace Rozvrh {
-    class NotificationManager {
+namespace SharedLib {
+    public static class NotificationManager {
         public static void ScheduleToastNotification(Task taskInstance) {
             DateTime notificationTime = taskInstance.deadline.AddDays(-taskInstance.notifyInDays);
             if (notificationTime <= DateTime.Now) return;
@@ -110,5 +110,56 @@ namespace Rozvrh {
             tn.ExpirationTime = new DateTimeOffset(taskInstance.deadline);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
         }
+
+        public static async void RegisterBackgroundTileUpdate() {
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity) {
+                foreach (var task in BackgroundTaskRegistration.AllTasks) {
+                    if (task.Value.Name == updateBackroundTileTaskName) {
+                        task.Value.Unregister(true);
+                    }
+                }
+
+                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = updateBackroundTileTaskName;
+                taskBuilder.TaskEntryPoint = taskEntryPoint;
+                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                var registration = taskBuilder.Register();
+            }
+        }
+
+        public static void PrepareLiveTile() {
+            DateTime now = DateTime.Now;
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+
+            bool hasNotification = false;
+            for (int i = 0; i < Data.tasks.Count; i++) {
+                if (Data.tasks[i].notifyInDays != 0 && Data.tasks[i].deadline.AddDays(-1.5 * Data.tasks[i].notifyInDays) <= now) {
+                    CreateTileNotification(Data.tasks[0]);
+                    hasNotification = true;
+                    break;
+                }
+            }
+
+            if (!hasNotification) {
+                long value = -1;
+                int key = 0;
+                for (int i = 0; i < Data.classInstances.Count; i++) {
+                    TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i]) - now;
+                    if (value == -1 || (diff.Ticks > 0 && diff.Ticks < value)) {
+                        value = diff.Ticks;
+                        key = i;
+                    }
+                }
+
+                if (value != -1)
+                    CreateTileNotification(Data.classInstances[key]);
+            }
+        }
+
+        const string updateBackroundTileTaskName = "BackgroundTileNotificationUpdate";
+        const string taskEntryPoint = "BackgroundTasks.LiveTileBackgroundUpdater";
+
     }
 }

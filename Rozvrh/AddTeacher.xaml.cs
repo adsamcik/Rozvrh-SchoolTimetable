@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using SharedLib;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;

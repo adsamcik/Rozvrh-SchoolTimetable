@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Storage;
 
-namespace Rozvrh {
+namespace SharedLib {
     public static class Data {
         static DataStore dataStore = new DataStore();
 

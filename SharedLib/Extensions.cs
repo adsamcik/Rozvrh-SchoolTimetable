@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace Rozvrh {
+namespace SharedLib {
    public static class Extensions {
         public static int GetIso8601WeekOfYear(DateTime date) {
             // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 

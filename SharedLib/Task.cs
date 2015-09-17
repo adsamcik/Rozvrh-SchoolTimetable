@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
 
-namespace Rozvrh {
+namespace SharedLib {
     public class Task {
         public string uid;
         public string title, description;
