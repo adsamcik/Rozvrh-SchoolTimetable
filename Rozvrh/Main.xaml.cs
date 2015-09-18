@@ -63,6 +63,7 @@ namespace Rozvrh {
 
             Content.Navigate(typeof(WeekView));
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+            NotificationManager.PrepareLiveTile();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
@@ -92,7 +93,7 @@ namespace Rozvrh {
                 BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
                 taskBuilder.Name = updateBackroundTileTaskName;
                 taskBuilder.TaskEntryPoint = taskEntryPoint;
-                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                taskBuilder.SetTrigger(new TimeTrigger(180, false));
                 var registration = taskBuilder.Register();
             }
         }
