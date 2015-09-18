@@ -34,7 +34,10 @@ namespace SharedLib {
             if (file != null) {
                 CachedFileManager.DeferUpdates(file);
                 // write to file
+                if(file.ContentType == ".ics")
                 await FileIO.WriteTextAsync(file, dataStore.ExportToiCalendar());
+                else if(file.ContentType == ".json")
+                    await FileIO.WriteTextAsync(file, dataStore.ExportToJson());
 
                 Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (status == Windows.Storage.Provider.FileUpdateStatus.Complete) {
@@ -121,8 +124,8 @@ namespace SharedLib {
                 }
             }
 
-            public void ExportToJson() {
-
+            public string ExportToJson() {
+                return JsonConvert.SerializeObject(this, Formatting.None);
             }
 
             public string ExportToiCalendar() {
@@ -140,9 +143,9 @@ namespace SharedLib {
                 string Event = WNLiCal("BEGIN:VEVENT");
                 Event += WNLiCal("SUMMARY:" + cInstance.classData.ToString());
                 Event += WNLiCal("DTSTART:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance)));
-                Event += WNLiCal("DTEND:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance).AddMinutes((cInstance.from-cInstance.to).TotalMinutes)));
+                Event += WNLiCal("DTEND:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance).AddMinutes((cInstance.from - cInstance.to).TotalMinutes)));
                 Event += WNLiCal("LOCATION:" + cInstance.room);
-                Event += WNLiCal("SEQUENCE:" + 5);
+                //Event += WNLiCal("SEQUENCE:" + 5);
                 Event += WNLiCal("END:VEVENT");
                 return Event;
             }
@@ -152,7 +155,8 @@ namespace SharedLib {
             }
 
             string ToICalDateFormat(DateTime dateTime) {
-                return dateTime.Year + dateTime.Month + dateTime.Day + "T" + dateTime.Hour + dateTime.Minute + dateTime.Second;
+                dateTime = dateTime.ToUniversalTime();
+                return dateTime.Year.ToString() + dateTime.Month.ToString("00") + dateTime.Day.ToString("00") + "T" + dateTime.Hour.ToString("00") + dateTime.Minute.ToString("00") + dateTime.Second.ToString("00") + "Z";
             }
 
             public void ClearAll() {
