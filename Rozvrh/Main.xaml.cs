@@ -2,6 +2,7 @@
 using SharedLib;
 using System;
 using System.Collections.ObjectModel;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Core;
@@ -65,13 +66,34 @@ namespace Rozvrh {
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-            NotificationManager.RegisterBackgroundTileUpdate();
+            RegisterBackgroundTileUpdate();
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {
                     Content.Navigate(typeof(AddTask), ld.data);
                 }
 
+            }
+        }
+
+        const string updateBackroundTileTaskName = "BackgroundTileNotificationUpdate";
+        const string taskEntryPoint = "BackgroundTasks.LiveTileBackgroundUpdater";
+
+        async void RegisterBackgroundTileUpdate() {
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
+                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity) {
+                foreach (var task in BackgroundTaskRegistration.AllTasks) {
+                    if (task.Value.Name == updateBackroundTileTaskName) {
+                        task.Value.Unregister(true);
+                    }
+                }
+
+                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = updateBackroundTileTaskName;
+                taskBuilder.TaskEntryPoint = taskEntryPoint;
+                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                var registration = taskBuilder.Register();
             }
         }
 

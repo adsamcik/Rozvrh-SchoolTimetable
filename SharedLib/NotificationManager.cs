@@ -111,24 +111,6 @@ namespace SharedLib {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
         }
 
-        public static async void RegisterBackgroundTileUpdate() {
-            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
-                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity) {
-                foreach (var task in BackgroundTaskRegistration.AllTasks) {
-                    if (task.Value.Name == updateBackroundTileTaskName) {
-                        task.Value.Unregister(true);
-                    }
-                }
-
-                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
-                taskBuilder.Name = updateBackroundTileTaskName;
-                taskBuilder.TaskEntryPoint = taskEntryPoint;
-                taskBuilder.SetTrigger(new TimeTrigger(15, false));
-                var registration = taskBuilder.Register();
-            }
-        }
-
         public static void PrepareLiveTile() {
             DateTime now = DateTime.Now;
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
@@ -158,8 +140,6 @@ namespace SharedLib {
             }
         }
 
-        const string updateBackroundTileTaskName = "BackgroundTileNotificationUpdate";
-        const string taskEntryPoint = "BackgroundTasks.LiveTileBackgroundUpdater";
 
     }
 }

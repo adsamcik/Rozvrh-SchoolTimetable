@@ -5,11 +5,8 @@ using SharedLib;
 namespace BackgroundTasks {
     public sealed class LiveTileBackgroundUpdater : IBackgroundTask {
         public void Run(IBackgroundTaskInstance taskInstance) {
-            //BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-
+            Data.Initialize();
             NotificationManager.PrepareLiveTile();
-
-            //deferral.Complete();
         }
     }
 }
