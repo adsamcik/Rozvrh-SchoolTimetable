@@ -29,7 +29,7 @@
             </Grid>
         </SplitView.Pane>
         <SplitView.Content>
-            <Frame x:Name="Content" Navigated="Content_Navigated" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0" />
+            <Frame x:Name="FrameContent" Navigated="FrameContent_Navigated" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0" />
         </SplitView.Content>
     </SplitView>
 </Page>

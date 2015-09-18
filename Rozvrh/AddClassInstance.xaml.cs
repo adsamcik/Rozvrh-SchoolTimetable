@@ -124,6 +124,7 @@ namespace Rozvrh {
                 else
                     Data.AddClassInstance(new ClassInstance((Class)comboBoxClass.SelectedItem, (ClassType)comboBoxClassType.SelectedIndex, timePickerFrom.Time, timePickerTo.Time, textBoxRoom.Text, (WeekDay)comboBoxDay.SelectedIndex, (WeekType)comboBoxWeek.SelectedIndex, (Teacher)comboBoxTeacher.SelectedValue));
 
+                BackgroundTasks.LiveTileBackgroundUpdater.PrepareLiveTile();
                 Frame.GoBack();
             }
         }

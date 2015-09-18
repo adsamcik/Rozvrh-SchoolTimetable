@@ -21,7 +21,7 @@ namespace Rozvrh {
     /// </summary>
     public sealed partial class Main : Page {
         public static Main instance;
-        bool canGoBack { get { return (Content.CanGoBack && Content.SourcePageType != typeof(Agenda) && Content.SourcePageType != typeof(WeekView)); } }
+        bool canGoBack { get { return (FrameContent.CanGoBack && FrameContent.SourcePageType != typeof(Agenda) && FrameContent.SourcePageType != typeof(WeekView)); } }
 
         public Main() {
             //Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "cs";
@@ -51,7 +51,7 @@ namespace Rozvrh {
 
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) => {
                 if (canGoBack) {
-                    Content.GoBack();
+                    FrameContent.GoBack();
                 }
             };
 
@@ -62,16 +62,14 @@ namespace Rozvrh {
             foreach (var link in _displayStyles)
                 link.Label = resourceLoader.GetString(link.Label);
 
-            Content.Navigate(typeof(WeekView));
-            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-            LiveTileBackgroundUpdater.RegisterBackgroundTileUpdate((uint)Math.Ceiling((NotificationManager.PrepareLiveTile() - DateTime.Now).TotalMinutes));
+            FrameContent.Navigate(typeof(WeekView));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {
-                    Content.Navigate(typeof(AddTask), ld.data);
+                    FrameContent.Navigate(typeof(AddTask), ld.data);
                 }
 
             }
@@ -79,7 +77,7 @@ namespace Rozvrh {
 
         private void NavLinksList_ItemClick(object sender, ItemClickEventArgs e) {
             NavLink link = (NavLink)e.ClickedItem;
-            Content.Navigate(link.Page);
+            FrameContent.Navigate(link.Page);
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e) {
@@ -102,7 +100,7 @@ namespace Rozvrh {
             new NavLink() { Label = "WeekView", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) }
         };
 
-        private void Content_Navigated(object sender, NavigationEventArgs e) {
+        private void FrameContent_Navigated(object sender, NavigationEventArgs e) {
             if (canGoBack)
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             else

@@ -6,7 +6,7 @@ namespace BackgroundTasks {
     public sealed class LiveTileBackgroundUpdater : IBackgroundTask {
         public void Run(IBackgroundTaskInstance taskInstance) {
             Data.Initialize();            
-            RegisterBackgroundTileUpdate((uint)Math.Ceiling((NotificationManager.PrepareLiveTile() - DateTime.Now).TotalMinutes));
+            PrepareLiveTile();
         }
 
         const string updateBackroundTileTaskName = "BackgroundTileNotificationUpdate";
@@ -24,6 +24,10 @@ namespace BackgroundTasks {
             taskBuilder.TaskEntryPoint = taskEntryPoint;
             taskBuilder.SetTrigger(new TimeTrigger(triggerIn, true));
             var registration = taskBuilder.Register();
+        }
+
+        public static void PrepareLiveTile() {
+            RegisterBackgroundTileUpdate((uint)Math.Ceiling((NotificationManager.PrepareLiveTile() - DateTime.Now).TotalMinutes));
         }
     }
 }

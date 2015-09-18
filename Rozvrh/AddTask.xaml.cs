@@ -58,6 +58,8 @@ namespace Rozvrh {
                 if (sliderNotify.Value != 0)
                     NotificationManager.CreateTileNotification(taskInstance);
 
+                BackgroundTasks.LiveTileBackgroundUpdater.PrepareLiveTile();
+
                 Frame.GoBack();
             }
         }

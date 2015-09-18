@@ -62,6 +62,8 @@ namespace Rozvrh {
                 }
                 else
                     Data.AddTeacher(new Teacher(textBoxName.Text, textBoxSurname.Text, textBoxEmail.Text, textBoxPhone.Text, textBoxDegree.Text));
+
+                BackgroundTasks.LiveTileBackgroundUpdater.PrepareLiveTile();
                 Frame.GoBack();
             }
         }
