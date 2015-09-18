@@ -19,7 +19,7 @@ namespace SharedLib {
             ((XmlElement)toastNode).SetAttribute("launch", JsonConvert.SerializeObject(new LaunchData(taskInstance.GetType(), taskInstance.uid)));
 
             ScheduledToastNotification scheduledToast = new ScheduledToastNotification(toastXml, notificationTime);
-            scheduledToast.Id = taskInstance.uid.Substring(0,12);
+            scheduledToast.Id = taskInstance.uid.Substring(0, 12);
 
             ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
 
@@ -32,14 +32,14 @@ namespace SharedLib {
             var scheduled = notifier.GetScheduledToastNotifications();
 
             for (int i = 0; i < scheduled.Count; i++) {
-                if(scheduled[i].Id == taskInstance.uid.Substring(0,12)) {
+                if (scheduled[i].Id == taskInstance.uid.Substring(0, 12)) {
                     notifier.RemoveFromSchedule(scheduled[i]);
                     break;
                 }
             }
         }
 
-        public static void CreateTileNotification(ClassInstance classInstance) {
+        public static void CreateTileNotification(ClassInstance classInstance, DateTime next) {
             var tile = AdaptiveTile.CreateTile();
             var binding = TileBinding.Create(TemplateType.TileWide);
             binding.Branding = Branding.None;
@@ -71,7 +71,7 @@ namespace SharedLib {
             tile.Tiles.Add(binding);
             TileNotification tn = tile.GetNotification();
 
-            tn.ExpirationTime = new DateTimeOffset(Extensions.WhenIsNext(classInstance));
+            tn.ExpirationTime = new DateTimeOffset(next);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
         }
 
@@ -111,35 +111,36 @@ namespace SharedLib {
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
         }
 
-        public static void PrepareLiveTile() {
+        public static DateTime PrepareLiveTile() {
             DateTime now = DateTime.Now;
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            bool hasNotification = false;
             for (int i = 0; i < Data.tasks.Count; i++) {
-                if (Data.tasks[i].notifyInDays != 0 && Data.tasks[i].deadline.AddDays(-1.5 * Data.tasks[i].notifyInDays) <= now) {
+                var deadline = Data.tasks[i].deadline.AddDays(-1.5 * Data.tasks[i].notifyInDays);
+                if (Data.tasks[i].notifyInDays != 0 && deadline <= now) {
                     CreateTileNotification(Data.tasks[0]);
-                    hasNotification = true;
-                    break;
+                    return deadline;
                 }
             }
 
-            if (!hasNotification) {
-                long value = -1;
-                int key = 0;
-                for (int i = 0; i < Data.classInstances.Count; i++) {
-                    TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i]) - now;
-                    if (value == -1 || (diff.Ticks > 0 && diff.Ticks < value)) {
-                        value = diff.Ticks;
-                        key = i;
-                    }
+            double value = -1;
+            int key = 0;
+            for (int i = 0; i < Data.classInstances.Count; i++) {
+                TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i]) - now;
+                if (value == -1 || (diff.TotalMinutes >= 15 && diff.TotalMinutes < value)) {
+                    value = diff.TotalMinutes;
+                    key = i;
                 }
-
-                if (value != -1)
-                    CreateTileNotification(Data.classInstances[key]);
             }
+
+            if (value != -1) {
+                DateTime next = Extensions.WhenIsNext(Data.classInstances[key]);
+                CreateTileNotification(Data.classInstances[key], next);
+                return next;
+            }
+
+            return default(DateTime);
         }
-
 
     }
 }

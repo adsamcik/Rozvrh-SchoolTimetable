@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BackgroundTasks;
+using Newtonsoft.Json;
 using SharedLib;
 using System;
 using System.Collections.ObjectModel;
@@ -63,38 +64,16 @@ namespace Rozvrh {
 
             Content.Navigate(typeof(WeekView));
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-            NotificationManager.PrepareLiveTile();
+            LiveTileBackgroundUpdater.RegisterBackgroundTileUpdate((uint)Math.Ceiling((NotificationManager.PrepareLiveTile() - DateTime.Now).TotalMinutes));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-            RegisterBackgroundTileUpdate();
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {
                     Content.Navigate(typeof(AddTask), ld.data);
                 }
 
-            }
-        }
-
-        const string updateBackroundTileTaskName = "BackgroundTileNotificationUpdate";
-        const string taskEntryPoint = "BackgroundTasks.LiveTileBackgroundUpdater";
-
-        async void RegisterBackgroundTileUpdate() {
-            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
-                backgroundAccessStatus == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity) {
-                foreach (var task in BackgroundTaskRegistration.AllTasks) {
-                    if (task.Value.Name == updateBackroundTileTaskName) {
-                        task.Value.Unregister(true);
-                    }
-                }
-
-                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder();
-                taskBuilder.Name = updateBackroundTileTaskName;
-                taskBuilder.TaskEntryPoint = taskEntryPoint;
-                taskBuilder.SetTrigger(new TimeTrigger(180, false));
-                var registration = taskBuilder.Register();
             }
         }
 
