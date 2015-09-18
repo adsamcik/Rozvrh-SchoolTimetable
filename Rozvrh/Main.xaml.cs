@@ -107,7 +107,8 @@ namespace Rozvrh {
         private ObservableCollection<NavLink> _displayStyles = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "AgendaView", Symbol = Symbol.SlideShow, Page = typeof(Agenda)  },
-            new NavLink() { Label = "WeekView", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) }
+            new NavLink() { Label = "WeekView", Symbol = Symbol.CalendarWeek, Page = typeof(WeekView) },
+            new NavLink() { Label = "Settings", Symbol = Symbol.Setting, Page = typeof(Settings) }
         };
 
         private void FrameContent_Navigated(object sender, NavigationEventArgs e) {

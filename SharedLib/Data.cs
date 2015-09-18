@@ -34,7 +34,7 @@ namespace SharedLib {
             if (file != null) {
                 CachedFileManager.DeferUpdates(file);
                 // write to file
-                await FileIO.WriteTextAsync(file, file.Name);
+                await FileIO.WriteTextAsync(file, dataStore.ExportToiCalendar());
 
                 Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (status == Windows.Storage.Provider.FileUpdateStatus.Complete) {
@@ -125,8 +125,34 @@ namespace SharedLib {
 
             }
 
-            public void ExportToiCalendar() {
+            public string ExportToiCalendar() {
+                string iCal = WNLiCal("BEGIN:VCALENDAR");
+                iCal += WNLiCal("VERSION:2.0");
 
+                foreach (var item in Data.classInstances)
+                    iCal += WriteiCalEvent(iCal, item);
+
+                iCal += WNLiCal("END:VCALENDAR");
+                return iCal;
+            }
+
+            string WriteiCalEvent(string iCal, ClassInstance cInstance) {
+                string Event = WNLiCal("BEGIN:VEVENT");
+                Event += WNLiCal("SUMMARY:" + cInstance.classData.ToString());
+                Event += WNLiCal("DTSTART:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance)));
+                Event += WNLiCal("DTEND:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance).AddMinutes((cInstance.from-cInstance.to).TotalMinutes)));
+                Event += WNLiCal("LOCATION:" + cInstance.room);
+                Event += WNLiCal("SEQUENCE:" + 5);
+                Event += WNLiCal("END:VEVENT");
+                return Event;
+            }
+
+            string WNLiCal(string data) {
+                return data + Environment.NewLine;
+            }
+
+            string ToICalDateFormat(DateTime dateTime) {
+                return dateTime.Year + dateTime.Month + dateTime.Day + "T" + dateTime.Hour + dateTime.Minute + dateTime.Second;
             }
 
             public void ClearAll() {
