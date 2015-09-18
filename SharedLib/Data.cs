@@ -20,6 +20,32 @@ namespace SharedLib {
             dataStore.Save();
         }
 
+        public static async void SaveToFile() {
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            // Dropdown of file types the user can save the file as
+            savePicker.FileTypeChoices.Add("Javascript object", new List<string>() { ".json" });
+            savePicker.FileTypeChoices.Add("iCalendar", new List<string>() { ".ics" });
+            // Default file name if the user does not type one in or select a file to replace
+            savePicker.SuggestedFileName = "Students_Assistent-data";
+
+            StorageFile file = await savePicker.PickSaveFileAsync();
+
+            if (file != null) {
+                CachedFileManager.DeferUpdates(file);
+                // write to file
+                await FileIO.WriteTextAsync(file, file.Name);
+
+                Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+                if (status == Windows.Storage.Provider.FileUpdateStatus.Complete) {
+                    //this.textBlock.Text = "File " + file.Name + " was saved.";
+                }
+                else {
+                    //this.textBlock.Text = "File " + file.Name + " couldn't be saved.";
+                }
+            }
+        }
+
         public static void Initialize() {
             roamingFolder = ApplicationData.Current.RoamingFolder;
             dataStore.Load();
@@ -65,7 +91,7 @@ namespace SharedLib {
         public static void DeleteClass(Class Class) {
             dataStore.classes.Remove(Class);
             dataStore.Save();
-        } 
+        }
 
         public static void DeleteClassInstance(ClassInstance classInstance) {
             dataStore.classInstances.Remove(classInstance);
@@ -93,6 +119,14 @@ namespace SharedLib {
                 catch {
                     Save();
                 }
+            }
+
+            public void ExportToJson() {
+
+            }
+
+            public void ExportToiCalendar() {
+
             }
 
             public void ClearAll() {

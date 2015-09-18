@@ -22,9 +22,6 @@ namespace SharedLib {
             scheduledToast.Id = taskInstance.uid.Substring(0, 12);
 
             ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
-
-            //ToastNotification toast = new ToastNotification(toastXml);
-            //ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
         public static void RemoveScheduledNotification(Task taskInstance) {

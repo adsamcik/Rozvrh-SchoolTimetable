@@ -63,6 +63,16 @@ namespace Rozvrh {
                 link.Label = resourceLoader.GetString(link.Label);
 
             FrameContent.Navigate(typeof(WeekView));
+
+            bool registered = false;
+            foreach (var task in BackgroundTaskRegistration.AllTasks) {
+                if (task.Value.Name == "BackgroundTileNotificationUpdate") {
+                    registered = true;
+                    break;
+                }
+            }
+
+            if (!registered) LiveTileBackgroundUpdater.PrepareLiveTile();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
