@@ -1,5 +1,0 @@
-MainPackage=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_1.2.1.0_x64.appx
-SymbolPackage=D:\Github\Rozvrh\Rozvrh\AppPackages\Rozvrh_1.2.1.0\Rozvrh_1.2.1.0_x64.appxsym
-ResourcePack=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_1.2.1.0_language-cs.appx
-ResourcePack=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_1.2.1.0_scale-100.appx
-ResourcePack=D:\Github\Rozvrh\Rozvrh\bin\x64\Release\Rozvrh_1.2.1.0_scale-400.appx
