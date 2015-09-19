@@ -271,4 +271,10 @@
   <data name="AddTeacher" xml:space="preserve">
     <value>Přidat učitele</value>
   </data>
+  <data name="buttonExport.Content" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
 </root>

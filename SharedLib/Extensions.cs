@@ -48,7 +48,7 @@ namespace SharedLib {
             if (classInstance.weekType != WeekType.EveryWeek)
                 if (GetWeekOfYear(now) % 2 == 0 && classInstance.weekType == WeekType.OddWeek)
                     now = now.AddDays(7);
-                else if (GetWeekOfYear(now) % 2 == 1 && classInstance.weekType == WeekType.EveryWeek)
+                else if (GetWeekOfYear(now) % 2 == 1 && classInstance.weekType == WeekType.EvenWeek)
                     now = now.AddDays(7);
 
             return new DateTime(now.Year, now.Month, now.Day, classInstance.from.Hours, classInstance.from.Minutes, classInstance.from.Seconds);
