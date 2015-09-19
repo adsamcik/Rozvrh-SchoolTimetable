@@ -48,7 +48,7 @@ namespace SharedLib {
             }
 
             if (classInstance.from != null) {
-                var dateTime = new Text(Data.loader.GetString(classInstance.day.ToString()) + " " + classInstance.from) { Style = TextStyle.Body };
+                var dateTime = new Text(Data.loader.GetString(classInstance.weekDay.ToString()) + " " + classInstance.from) { Style = TextStyle.Body };
                 subgroup.AddText(dateTime);
             }
 

@@ -36,12 +36,12 @@ namespace SharedLib {
             if (currentDay == -1) currentDay = 6;
 
             int expireIn;
-            if (currentDay == (int)classInstance.day)
+            if (currentDay == (int)classInstance.weekDay)
                 expireIn = classInstance.from > now.TimeOfDay ? 0 : 7;
             else
-                expireIn = currentDay <= (int)classInstance.day ?
-                    (int)classInstance.day - currentDay :
-                    7 - currentDay + (int)classInstance.day;
+                expireIn = currentDay <= (int)classInstance.weekDay ?
+                    (int)classInstance.weekDay - currentDay :
+                    7 - currentDay + (int)classInstance.weekDay;
 
             now = now.AddDays(expireIn);
 

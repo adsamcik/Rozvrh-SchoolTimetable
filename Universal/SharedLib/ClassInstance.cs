@@ -8,7 +8,7 @@ namespace SharedLib {
         public ClassType classType;
         public TimeSpan from, to;
         public string room;
-        public WeekDay day;
+        public WeekDay weekDay;
         public WeekType weekType;
         public Teacher teacher;
 
@@ -27,7 +27,7 @@ namespace SharedLib {
             this.from = from;
             this.to = to;
             this.room = room;
-            this.day = day;
+            this.weekDay = day;
             this.weekType = weekType;
             this.teacher = teacher;
 
