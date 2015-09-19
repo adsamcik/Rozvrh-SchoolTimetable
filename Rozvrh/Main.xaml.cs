@@ -66,6 +66,16 @@ namespace Rozvrh {
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
+            bool registered = false;
+            foreach (var task in BackgroundTaskRegistration.AllTasks) {
+                if (task.Value.Name == "BackgroundTileNotificationUpdate") {
+                    registered = true;
+                    break;
+                }
+            }
+
+            if (!registered) LiveTileBackgroundUpdater.PrepareLiveTile();
+
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {
