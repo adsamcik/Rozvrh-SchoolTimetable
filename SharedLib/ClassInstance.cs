@@ -19,7 +19,7 @@ namespace SharedLib {
         [JsonIgnore]
         public string nextFullString { get { return Next.ToString(@"dddd dd\.MMMM HH\:mm"); } }
         [JsonIgnore]
-        public DateTime Next { get { return Extensions.WhenIsNext(this); } }
+        public DateTime Next { get { return Extensions.WhenIsNext(this, DateTime.Now); } }
 
         public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher, string uid = "") {
             this.classData = classData;

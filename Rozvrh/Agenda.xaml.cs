@@ -33,7 +33,7 @@ namespace Rozvrh {
             foreach (var taskInstance in Data.tasks)
                 upcomingList.Add(new DisplayClass(taskInstance));
 
-            upcomingList = upcomingList.OrderBy(x => x.taskInstance == null ? Extensions.WhenIsNext(x.classInstance) : x.taskInstance.deadline).ToList();
+            upcomingList = upcomingList.OrderBy(x => x.taskInstance == null ? Extensions.WhenIsNext(x.classInstance, DateTime.Now) : x.taskInstance.deadline).ToList();
 
             this.InitializeComponent();
         }

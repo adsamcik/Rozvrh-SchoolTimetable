@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace SharedLib {
-   public static class Extensions {
+    public static class Extensions {
         public static int GetIso8601WeekOfYear(DateTime date) {
             // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
             // be the same week# as whatever Thursday, Friday or Saturday are,
@@ -31,8 +31,7 @@ namespace SharedLib {
             return cal.GetWeekOfYear(date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
         }
 
-        public static DateTime WhenIsNext(ClassInstance classInstance) {
-            DateTime now = DateTime.Now;
+        public static DateTime WhenIsNext(ClassInstance classInstance, DateTime now) {
             int currentDay = (int)now.DayOfWeek - 1;
             if (currentDay == -1) currentDay = 6;
 
@@ -49,7 +48,7 @@ namespace SharedLib {
             if (classInstance.weekType != WeekType.EveryWeek)
                 if (GetWeekOfYear(now) % 2 == 0 && classInstance.weekType == WeekType.OddWeek)
                     now = now.AddDays(7);
-                else if (classInstance.weekType == WeekType.EveryWeek)
+                else if (GetWeekOfYear(now) % 2 == 1 && classInstance.weekType == WeekType.EveryWeek)
                     now = now.AddDays(7);
 
             return new DateTime(now.Year, now.Month, now.Day, classInstance.from.Hours, classInstance.from.Minutes, classInstance.from.Seconds);

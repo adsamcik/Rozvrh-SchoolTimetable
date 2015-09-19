@@ -271,4 +271,10 @@
   <data name="buttonDelete.Content" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="buttonExport.Content" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

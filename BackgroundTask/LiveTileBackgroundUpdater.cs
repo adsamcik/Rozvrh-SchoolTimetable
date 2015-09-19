@@ -4,8 +4,7 @@ using SharedLib;
 
 namespace BackgroundTasks {
     public sealed class LiveTileBackgroundUpdater : IBackgroundTask {
-        public void Run(IBackgroundTaskInstance taskInstance) {
-            Data.Initialize();            
+        public void Run(IBackgroundTaskInstance taskInstance) {           
             PrepareLiveTile();
         }
 

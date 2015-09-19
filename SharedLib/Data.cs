@@ -5,6 +5,8 @@ using Windows.Storage;
 
 namespace SharedLib {
     public static class Data {
+        static StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
+
         static DataStore dataStore = new DataStore();
 
         public static List<Class> classes { get { return dataStore.classes; } }
@@ -14,7 +16,9 @@ namespace SharedLib {
 
         public static Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
-        static StorageFolder roamingFolder;
+        public static void Initialize() {
+            dataStore.Load();
+        }
 
         public static void Save() {
             dataStore.Save();
@@ -34,9 +38,9 @@ namespace SharedLib {
             if (file != null) {
                 CachedFileManager.DeferUpdates(file);
                 // write to file
-                if(file.ContentType == ".ics")
-                await FileIO.WriteTextAsync(file, dataStore.ExportToiCalendar());
-                else if(file.ContentType == ".json")
+                if (file.ContentType == "text/calendar")
+                    await FileIO.WriteTextAsync(file, dataStore.ExportToiCalendar());
+                else if (file.FileType == ".json")
                     await FileIO.WriteTextAsync(file, dataStore.ExportToJson());
 
                 Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
@@ -47,11 +51,6 @@ namespace SharedLib {
                     //this.textBlock.Text = "File " + file.Name + " couldn't be saved.";
                 }
             }
-        }
-
-        public static void Initialize() {
-            roamingFolder = ApplicationData.Current.RoamingFolder;
-            dataStore.Load();
         }
 
         public static void AddClass(Class Class) {
@@ -117,12 +116,16 @@ namespace SharedLib {
                 System.Diagnostics.Debug.WriteLine(roamingFolder.Path);
                 try {
                     StorageFile dataFile = await roamingFolder.GetFileAsync("dataFile");
-                    dataStore = JsonConvert.DeserializeObject<DataStore>(await FileIO.ReadTextAsync(dataFile));
+                    string text = await FileIO.ReadTextAsync(dataFile);
+                    dataStore = JsonConvert.DeserializeObject<DataStore>(text);
+                    if (dataStore == null)
+                        Save();
                 }
                 catch {
                     Save();
                 }
             }
+
 
             public string ExportToJson() {
                 return JsonConvert.SerializeObject(this, Formatting.None);
@@ -132,20 +135,24 @@ namespace SharedLib {
                 string iCal = WNLiCal("BEGIN:VCALENDAR");
                 iCal += WNLiCal("VERSION:2.0");
 
+                DateTime now = DateTime.Now;
+                DateTime semestrEnd = now.Month > 8 ? new DateTime(now.Year, 12, 24) : new DateTime(now.Year, 5, 30);
+
                 foreach (var item in Data.classInstances)
-                    iCal += WriteiCalEvent(iCal, item);
+                    iCal += WriteiCalEvent(iCal, item, now, semestrEnd);
 
                 iCal += WNLiCal("END:VCALENDAR");
                 return iCal;
             }
 
-            string WriteiCalEvent(string iCal, ClassInstance cInstance) {
+            string WriteiCalEvent(string iCal, ClassInstance cInstance, DateTime now, DateTime semestrEnd) {
+                DateTime next = Extensions.WhenIsNext(cInstance, now);
                 string Event = WNLiCal("BEGIN:VEVENT");
                 Event += WNLiCal("SUMMARY:" + cInstance.classData.ToString());
-                Event += WNLiCal("DTSTART:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance)));
-                Event += WNLiCal("DTEND:" + ToICalDateFormat(Extensions.WhenIsNext(cInstance).AddMinutes((cInstance.from - cInstance.to).TotalMinutes)));
+                Event += WNLiCal("DTSTART:" + ToICalDateFormat(next));
+                Event += WNLiCal("DTEND:" + ToICalDateFormat(next.AddMinutes((cInstance.to - cInstance.from).TotalMinutes)));
                 Event += WNLiCal("LOCATION:" + cInstance.room);
-                //Event += WNLiCal("SEQUENCE:" + 5);
+                Event += WNLiCal("RRULE:FREQ=WEEKLY;UNTIL=" + ToICalDateFormat(semestrEnd) + (cInstance.weekType != WeekType.EveryWeek ? ";INTERVAL=2" : ""));
                 Event += WNLiCal("END:VEVENT");
                 return Event;
             }
@@ -155,7 +162,10 @@ namespace SharedLib {
             }
 
             string ToICalDateFormat(DateTime dateTime) {
-                dateTime = dateTime.ToUniversalTime();
+                TimeZoneInfo timeZone = TimeZoneInfo.Local;
+                TimeSpan offset = timeZone.GetUtcOffset(DateTime.Now);
+                dateTime = dateTime.Add(-offset);
+                //Save times internally in UTC
                 return dateTime.Year.ToString() + dateTime.Month.ToString("00") + dateTime.Day.ToString("00") + "T" + dateTime.Hour.ToString("00") + dateTime.Minute.ToString("00") + dateTime.Second.ToString("00") + "Z";
             }
 

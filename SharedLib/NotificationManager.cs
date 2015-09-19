@@ -123,7 +123,7 @@ namespace SharedLib {
             double value = -1;
             int key = 0;
             for (int i = 0; i < Data.classInstances.Count; i++) {
-                TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i]) - now;
+                TimeSpan diff = Extensions.WhenIsNext(Data.classInstances[i], now) - now;
                 if (value == -1 || (diff.TotalMinutes >= 15 && diff.TotalMinutes < value)) {
                     value = diff.TotalMinutes;
                     key = i;
@@ -131,7 +131,7 @@ namespace SharedLib {
             }
 
             if (value != -1) {
-                DateTime next = Extensions.WhenIsNext(Data.classInstances[key]);
+                DateTime next = Extensions.WhenIsNext(Data.classInstances[key], now);
                 CreateTileNotification(Data.classInstances[key], next);
                 return next;
             }

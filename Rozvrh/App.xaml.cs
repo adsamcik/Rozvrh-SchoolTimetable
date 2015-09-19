@@ -29,7 +29,6 @@ namespace Rozvrh
         /// </summary>
         public App()
         {
-            Data.Initialize();
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
@@ -44,7 +43,7 @@ namespace Rozvrh
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            Data.Initialize();
 /*#if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
