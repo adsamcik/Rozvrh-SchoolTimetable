@@ -277,4 +277,7 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="buttonImport.Content" xml:space="preserve">
+    <value>Import</value>
+  </data>
 </root>

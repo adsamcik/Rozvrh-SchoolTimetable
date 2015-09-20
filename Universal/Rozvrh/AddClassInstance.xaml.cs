@@ -99,7 +99,7 @@ namespace Rozvrh {
                 timePickerFrom.Time = cInstance.from;
                 timePickerTo.Time = cInstance.to;
                 textBoxRoom.Text = cInstance.room;
-                comboBoxDay.SelectedIndex = (int)cInstance.day;
+                comboBoxDay.SelectedIndex = (int)cInstance.weekDay;
                 comboBoxTeacher.SelectedIndex = Data.teachers.FindIndex(x => x == cInstance.teacher);
                 editObject = cInstance;
                 buttonDelete.Visibility = Visibility.Visible;
@@ -117,7 +117,7 @@ namespace Rozvrh {
                     editObject.from = timePickerFrom.Time;
                     editObject.to = timePickerTo.Time;
                     editObject.room = textBoxRoom.Text;
-                    editObject.day = (WeekDay)comboBoxDay.SelectedIndex;
+                    editObject.weekDay = (WeekDay)comboBoxDay.SelectedIndex;
                     editObject.teacher = (Teacher)comboBoxTeacher.SelectedItem;
                     Data.Save();
                 }

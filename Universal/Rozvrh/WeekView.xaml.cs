@@ -26,7 +26,7 @@ namespace Rozvrh {
             List<ClassInstance> classList = Data.classInstances;
 
             foreach (var @class in classList)
-                week[(int)@class.day].Add(new DisplayClass(@class));
+                week[(int)@class.weekDay].Add(new DisplayClass(@class));
 
             for (int i = 0; i < Data.tasks.Count; i++) {
                 Task task = Data.tasks[i];

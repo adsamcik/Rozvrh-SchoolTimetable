@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace SharedLib {
     public static class Data {
@@ -50,6 +51,24 @@ namespace SharedLib {
                 else {
                     //this.textBlock.Text = "File " + file.Name + " couldn't be saved.";
                 }
+            }
+        }
+
+        public static async void LoadFromFile() {
+            var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            loadPicker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            // Dropdown of file types the user can save the file as
+            loadPicker.FileTypeFilter.Add(".json");
+
+            StorageFile file = await loadPicker.PickSingleFileAsync();
+
+            if (file != null) {
+                var inputStream = await file.OpenAsync(FileAccessMode.Read);
+                var readStream = inputStream.GetInputStreamAt(0);
+                var reader = new DataReader(readStream);
+                uint fileLength = await reader.LoadAsync((uint)inputStream.Size);
+                dataStore.ImportFromJson(reader.ReadString(fileLength));
             }
         }
 
@@ -116,8 +135,8 @@ namespace SharedLib {
                 System.Diagnostics.Debug.WriteLine(roamingFolder.Path);
                 try {
                     StorageFile dataFile = await roamingFolder.GetFileAsync("dataFile");
-                    string text = await FileIO.ReadTextAsync(dataFile);
-                    dataStore = JsonConvert.DeserializeObject<DataStore>(text);
+                    string json = await FileIO.ReadTextAsync(dataFile);
+                    dataStore = JsonConvert.DeserializeObject<DataStore>(json);
                     if (dataStore == null)
                         Save();
                 }
@@ -129,6 +148,11 @@ namespace SharedLib {
 
             public string ExportToJson() {
                 return JsonConvert.SerializeObject(this, Formatting.None);
+            }
+
+            public void ImportFromJson(string json) {
+                dataStore = JsonConvert.DeserializeObject<DataStore>(json);
+                Save();
             }
 
             public string ExportToiCalendar() {
