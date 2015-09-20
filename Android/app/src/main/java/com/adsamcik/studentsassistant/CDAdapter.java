@@ -38,7 +38,7 @@ public class CDAdapter extends RecyclerView.Adapter<CDAdapter.DataObjectHolder> 
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
+        CDAdapter.myClickListener = myClickListener;
     }
 
     public CDAdapter(ArrayList<DisplayClass> myDataset) {
@@ -84,6 +84,6 @@ public class CDAdapter extends RecyclerView.Adapter<CDAdapter.DataObjectHolder> 
     }
 
     public interface MyClickListener {
-        public void onItemClick(int position, View v);
+        void onItemClick(int position, View v);
     }
 }

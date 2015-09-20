@@ -1,1 +1,1 @@
-include ':app', ':OneDriveSDK', ':OneDriveSDKTests', ':'
+include ':app'
