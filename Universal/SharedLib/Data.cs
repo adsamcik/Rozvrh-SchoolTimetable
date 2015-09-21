@@ -160,6 +160,7 @@ namespace SharedLib {
 
             public string ExportToiCalendar() {
                 string iCal = WNLiCal("BEGIN:VCALENDAR");
+                iCal += WNLiCal("PRODID:-//Adsamcik//Student's Assistant//" + Windows.ApplicationModel.Package.Current.Id.Version.Major + "." + Windows.ApplicationModel.Package.Current.Id.Version.Minor + "." + Windows.ApplicationModel.Package.Current.Id.Version.Build);
                 iCal += WNLiCal("VERSION:2.0");
 
                 DateTime now = DateTime.Now;

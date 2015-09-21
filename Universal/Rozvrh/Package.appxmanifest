@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43275adsamcik.StudentsAssistent" Publisher="CN=36E00FAB-A80D-44A2-B436-AB50ED142FAF" Version="1.2.1.0" />
+  <Identity Name="43275adsamcik.StudentsAssistent" Publisher="CN=36E00FAB-A80D-44A2-B436-AB50ED142FAF" Version="1.3.0.0" />
   <mp:PhoneIdentity PhoneProductId="d886be29-04a3-4038-98b0-da48e458b5d1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Student's Assistent</DisplayName>
@@ -34,7 +34,4 @@
       </Extensions>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
