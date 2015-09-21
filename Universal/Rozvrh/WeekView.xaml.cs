@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using System.Linq;
 using System;
 using SharedLib;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -14,12 +15,20 @@ namespace Rozvrh {
     public sealed partial class WeekView : Page {
         public static Windows.UI.Xaml.ResourceDictionary resources;
 
-        List<DisplayClass>[] week = new List<DisplayClass>[5];
+        List<DisplayClass>[] week = new List<DisplayClass>[6];
 
         public WeekView() {
             resources = Resources;
-            DateTime now = DateTime.Now;
+            
+            Initialize();
 
+            Debug.WriteLine("IsFinished " + Data.loadingFinished);
+        }
+
+        async void Initialize() {
+            while (!Data.loadingFinished) await System.Threading.Tasks.Task.Delay(10);
+
+            DateTime now = DateTime.Now;
             for (int i = 0; i < week.Length; i++)
                 week[i] = new List<DisplayClass>();
 
@@ -30,21 +39,31 @@ namespace Rozvrh {
 
             for (int i = 0; i < Data.tasks.Count; i++) {
                 Task task = Data.tasks[i];
-                if ((int)task.deadline.DayOfWeek <= 5 && (int)task.deadline.DayOfWeek > 0) {
-                    if (task.deadline < now) {
-                        Data.ArchiveTask(task);
-                        i--;
-                    }
-                    else
-                        week[(int)task.deadline.DayOfWeek - 1].Add(new DisplayClass(task));
+                if (task.deadline < now) {
+                    Data.ArchiveTask(task);
+                    i--;
                 }
+                else {
+                    if ((int)task.deadline.DayOfWeek <= 5 && (int)task.deadline.DayOfWeek > 0)
+                        week[(int)task.deadline.DayOfWeek - 1].Add(new DisplayClass(task));
+                    else
+                        week[5].Add(new DisplayClass(task));
+                }
+
             }
-               
+
 
             for (int i = 0; i < week.Length; i++)
                 week[i] = week[i].OrderBy(x => x.classInstance != null ? x.classInstance.from : x.taskInstance.deadline.TimeOfDay).ToList();
 
             this.InitializeComponent();
+
+            gridViewMonday.ItemsSource = week[0];
+            gridViewTuesday.ItemsSource = week[1];
+            gridViewWednesday.ItemsSource = week[2];
+            gridViewThursday.ItemsSource = week[3];
+            gridViewFriday.ItemsSource = week[4];
+            gridViewWeekend.ItemsSource = week[5];
         }
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e) {

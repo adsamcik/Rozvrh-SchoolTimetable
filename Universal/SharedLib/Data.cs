@@ -14,6 +14,8 @@ namespace SharedLib {
         public static List<Teacher> teachers { get { return dataStore.teachers; } }
         public static List<ClassInstance> classInstances { get { return dataStore.classInstances; } }
         public static List<Task> tasks { get { return dataStore.tasks; } }
+        static bool _loadingFinished;
+        public static bool loadingFinished { get { return _loadingFinished; } }
 
         public static Windows.ApplicationModel.Resources.ResourceLoader loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
@@ -143,6 +145,7 @@ namespace SharedLib {
                 catch {
                     Save();
                 }
+                _loadingFinished = true;
             }
 
 
@@ -165,6 +168,9 @@ namespace SharedLib {
                 foreach (var item in Data.classInstances)
                     iCal += WriteiCalEvent(iCal, item, now, semestrEnd);
 
+                foreach (var item in Data.tasks)
+                    iCal += WriteiCalEvent(iCal, item, now, semestrEnd);
+
                 iCal += WNLiCal("END:VCALENDAR");
                 return iCal;
             }
@@ -177,6 +183,29 @@ namespace SharedLib {
                 Event += WNLiCal("DTEND:" + ToICalDateFormat(next.AddMinutes((cInstance.to - cInstance.from).TotalMinutes)));
                 Event += WNLiCal("LOCATION:" + cInstance.room);
                 Event += WNLiCal("RRULE:FREQ=WEEKLY;UNTIL=" + ToICalDateFormat(semestrEnd) + (cInstance.weekType != WeekType.EveryWeek ? ";INTERVAL=2" : ""));
+                Event += WNLiCal("END:VEVENT");
+                return Event;
+            }
+
+            string WriteiCalEvent(string iCal, Task tInstance, DateTime now, DateTime semestrEnd) {
+                string Event = WNLiCal("BEGIN:VEVENT");
+                if (tInstance.classTarget != null) {
+                    Event += WNLiCal("SUMMARY:" + tInstance.title + "(" + tInstance.classTarget.shortName + ")");
+                    Event += WNLiCal("DESCRIPTION:" + tInstance.classTarget.ToString() + @"\n" + tInstance.description);
+                }
+                else {
+                    Event += WNLiCal("SUMMARY:" + tInstance.title);
+                    Event += WNLiCal("DESCRIPTION:" + tInstance.description);
+                }
+                Event += WNLiCal("DTSTART:" + ToICalDateFormat(tInstance.deadline));
+                Event += WNLiCal("DTEND:" + ToICalDateFormat(tInstance.deadline));
+                if (tInstance.notifyInDays > 0) {
+                    Event += WNLiCal("BEGIN:VALARM");
+                    Event += WNLiCal("ACTION:DISPLAY");
+                    Event += WNLiCal("DESCRIPTION:This is an event reminder");
+                    Event += WNLiCal("TRIGGER:-P" + tInstance.notifyInDays + "D");
+                    Event += WNLiCal("END:VALARM");
+                }
                 Event += WNLiCal("END:VEVENT");
                 return Event;
             }

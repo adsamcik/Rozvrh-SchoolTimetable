@@ -280,4 +280,7 @@
   <data name="buttonImport.Content" xml:space="preserve">
     <value>Import</value>
   </data>
+  <data name="WeekendTitle.Text" xml:space="preserve">
+    <value>Víkend</value>
+  </data>
 </root>
