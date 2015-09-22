@@ -281,6 +281,21 @@
     <value>Import</value>
   </data>
   <data name="WeekendTitle.Text" xml:space="preserve">
-    <value />
+    <value>Weekend</value>
+  </data>
+  <data name="ExerciseColor" xml:space="preserve">
+    <value>#ff3c78f0</value>
+  </data>
+  <data name="LabColor" xml:space="preserve">
+    <value>#ffb4b428</value>
+  </data>
+  <data name="LectureColor" xml:space="preserve">
+    <value>#ff5ab45a</value>
+  </data>
+  <data name="StandardColor" xml:space="preserve">
+    <value>#fff2f2f2</value>
+  </data>
+  <data name="WorkshopColor" xml:space="preserve">
+    <value>#ffdc1464</value>
   </data>
 </root>

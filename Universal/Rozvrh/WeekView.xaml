@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Border Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}" Margin="0,0,0,5">
+                <Border Background="{x:Bind classInstance.classTypeColor}" Margin="0,0,0,5">
                     <TextBlock Text="{x:Bind classInstance.classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Left"/>
                 </Border>
                 <TextBlock Text="{x:Bind classInstance.room}" Grid.Row="1" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" Margin="8,0,0,32" HorizontalAlignment="Left" Width="140"/>

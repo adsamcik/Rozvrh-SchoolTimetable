@@ -20,6 +20,8 @@ namespace SharedLib {
         public string nextFullString { get { return Next.ToString(@"dddd dd\.MMMM HH\:mm"); } }
         [JsonIgnore]
         public DateTime Next { get { return Extensions.WhenIsNext(this, DateTime.Now); } }
+        [JsonIgnore]
+        public string classTypeColor { get { return Data.loader.GetString(classType.ToString() + "Color"); } }
 
         public ClassInstance(Class classData, ClassType classType, TimeSpan from, TimeSpan to, string room, WeekDay day, WeekType weekType, Teacher teacher, string uid = "") {
             this.classData = classData;
