@@ -13,6 +13,9 @@ namespace SharedLib {
         public string deadlineString { get { return deadline.ToString(@"dddd dd\.MMMM HH\:mm"); } }
 
         [JsonIgnore]
+        public string deadlineStringShort { get { return deadline.ToString(@"dd\.MMMM HH\:mm"); } }
+
+        [JsonIgnore]
         public bool isSoon { get { _daysLeft = (deadline - DateTime.Now).TotalDays; return _daysLeft <= notifyInDays * 1.5 || (_daysLeft <= 7 && _daysLeft > 0); } }
         double _daysLeft;
 
