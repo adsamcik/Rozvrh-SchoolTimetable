@@ -13,7 +13,7 @@ namespace SharedLib {
         public Teacher teacher;
 
         [JsonIgnore]
-        public string classTypeString { get { return Data.loader.GetString("Class" + classType.ToString()); } }
+        public string classTypeString { get { return Data.loader.GetString(classType.ToString()); } }
         [JsonIgnore]
         public string fromToString { get { return from.ToString(@"hh\:mm") + " - " + to.ToString(@"hh\:mm"); } }
         [JsonIgnore]
