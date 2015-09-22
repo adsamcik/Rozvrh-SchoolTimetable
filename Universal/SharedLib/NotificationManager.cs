@@ -1,7 +1,6 @@
 ﻿using AdaptiveTileExtensions;
 using Newtonsoft.Json;
 using System;
-using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
