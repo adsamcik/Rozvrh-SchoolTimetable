@@ -17,6 +17,10 @@ namespace SharedLib {
         [JsonIgnore]
         public string deadlineString { get { return deadline.ToString(@"dddd dd\.MMMM HH\:mm"); } }
 
+        [JsonIgnore]
+        public bool isSoon { get { _daysLeft = (deadline - DateTime.Now).TotalDays; return _daysLeft <= notifyInDays * 1.5 || (_daysLeft <= 7 && _daysLeft > 0); } }
+        double _daysLeft;
+
         public Task(string title, string description, DateTime deadline, int notifyInDays = 0, Class classTarget = null, string uid = "") {
             this.title = title;
             this.description = description;

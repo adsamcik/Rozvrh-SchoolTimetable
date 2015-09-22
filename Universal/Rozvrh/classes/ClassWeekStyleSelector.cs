@@ -19,7 +19,7 @@ namespace Rozvrh {
                 else
                     return WeekView.resources["wrongWeekClassTemplate"] as DataTemplate;
             }
-            else if(listItem.taskInstance != null) {
+            else if (listItem.taskInstance != null) {
                 return WeekView.resources["standardTaskTemplate"] as DataTemplate;
             }
 

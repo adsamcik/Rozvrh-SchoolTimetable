@@ -19,7 +19,7 @@ namespace Rozvrh {
 
         public WeekView() {
             resources = Resources;
-            
+
             Initialize();
 
             Debug.WriteLine("IsFinished " + Data.loadingFinished);

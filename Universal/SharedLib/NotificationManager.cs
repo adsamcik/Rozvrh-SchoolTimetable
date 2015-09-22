@@ -113,10 +113,13 @@ namespace SharedLib {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
             for (int i = 0; i < Data.tasks.Count; i++) {
+                if (Data.tasks[i].deadline < now) continue;
                 var deadline = Data.tasks[i].deadline.AddDays(-1.5 * Data.tasks[i].notifyInDays);
+                //The new deadline is moved back a few days, it should be smaller because we need it to fit in notification interval
+                //past time is catched in the first line in this for
                 if (Data.tasks[i].notifyInDays != 0 && deadline <= now) {
                     CreateTileNotification(Data.tasks[0]);
-                    return deadline;
+                    return Data.tasks[i].deadline;
                 }
             }
 
