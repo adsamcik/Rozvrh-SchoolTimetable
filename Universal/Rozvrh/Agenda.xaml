@@ -17,7 +17,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Rectangle Fill="{ThemeResource AppBarBackgroundThemeBrush}" />
+                <Rectangle Fill="{x:Bind classInstance.classTypeColor}" />
                 <TextBlock Text="{x:Bind classInstance.classData}" TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" Margin="10,10,0,10" HorizontalAlignment="Stretch"/>
                 <TextBlock Text="{x:Bind classInstance.nextFullString}" Margin="10,10,0,10" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <TextBlock Text="{x:Bind classInstance.room}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
