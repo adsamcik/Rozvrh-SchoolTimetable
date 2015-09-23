@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rozvrh</RootNamespace>
-    <AssemblyName>StudentsAssistent</AssemblyName>
+    <AssemblyName>Rozvrh</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -232,7 +232,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AppxSystemBinary Include="StudentsAssistent.dll" />
+    <AppxSystemBinary Include="Rozvrh.dll" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

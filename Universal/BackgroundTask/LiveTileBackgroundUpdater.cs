@@ -12,6 +12,7 @@ namespace BackgroundTasks {
         const string taskEntryPoint = "BackgroundTasks.LiveTileBackgroundUpdater";
 
         public static void RegisterBackgroundTileUpdate(uint triggerIn) {
+            if (triggerIn > 43200) return;
             foreach (var task in BackgroundTaskRegistration.AllTasks) {
                 if (task.Value.Name == updateBackroundTileTaskName) {
                     task.Value.Unregister(true);
