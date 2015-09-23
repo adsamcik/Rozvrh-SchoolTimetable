@@ -19,7 +19,7 @@
                 <TextBlock x:Name="ClassInstanceTitle" x:Uid="ClassTypeTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Predmet" VerticalAlignment="Top" RelativePanel.Below="timePickerDeadline"/>
                 <ComboBox x:Name="comboBoxClass" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="ClassInstanceTitle"/>
                 <TextBlock x:Name="NotifyTitle" x:Uid="NotifyTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Upozorneni" VerticalAlignment="Top" RelativePanel.Below="comboBoxClass"/>
-                <Slider x:Name="sliderNotify" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="NotifyTitle" Maximum="10" LargeChange="2"/>
+                <Slider x:Name="sliderNotify" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="NotifyTitle" Maximum="14" LargeChange="2"/>
                 <TextBlock x:Name="DescriptionTitle" x:Uid="DescriptionTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Popis" VerticalAlignment="Top" RelativePanel.Below="sliderNotify"/>
                 <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="400" RelativePanel.Below="DescriptionTitle" AcceptsReturn="True" TextWrapping="Wrap"/>
             </RelativePanel>
