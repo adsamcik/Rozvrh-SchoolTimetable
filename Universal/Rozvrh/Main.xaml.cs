@@ -62,10 +62,11 @@ namespace Rozvrh {
             foreach (var link in _displayStyles)
                 link.Label = resourceLoader.GetString(link.Label);
 
-            FrameContent.Navigate(typeof(WeekView));
+            InitializeAfterDataLoad();          
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
+        public async void InitializeAfterDataLoad() {
+            while (!Data.loadingFinished) await System.Threading.Tasks.Task.Delay(10);
             bool registered = false;
             foreach (var task in BackgroundTaskRegistration.AllTasks) {
                 if (task.Value.Name == "BackgroundTileNotificationUpdate") {
@@ -73,9 +74,12 @@ namespace Rozvrh {
                     break;
                 }
             }
-
             if (!registered) LiveTileBackgroundUpdater.PrepareLiveTile();
 
+            FrameContent.Navigate(typeof(WeekView));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.Parameter != null) {
                 LaunchData ld = JsonConvert.DeserializeObject<LaunchData>((string)e.Parameter);
                 if (ld != null && ld.type == typeof(Task)) {

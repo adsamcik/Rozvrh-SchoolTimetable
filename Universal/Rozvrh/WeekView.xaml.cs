@@ -19,15 +19,6 @@ namespace Rozvrh {
 
         public WeekView() {
             resources = Resources;
-
-            Initialize();
-
-            Debug.WriteLine("IsFinished " + Data.loadingFinished);
-        }
-
-        async void Initialize() {
-            while (!Data.loadingFinished) await System.Threading.Tasks.Task.Delay(10);
-
             DateTime now = DateTime.Now;
             for (int i = 0; i < week.Length; i++)
                 week[i] = new List<DisplayClass>();
