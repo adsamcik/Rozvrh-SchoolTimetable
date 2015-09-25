@@ -360,6 +360,7 @@
     <ReservedNames>
       <ReservedName>Student's Assistent</ReservedName>
       <ReservedName>Studentův asistent</ReservedName>
+      <ReservedName>Student's Assistant</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
