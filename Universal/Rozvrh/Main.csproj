@@ -7,8 +7,8 @@
     <ProjectGuid>{E878092F-82AC-4CDD-86CF-B0A872A4BB8C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rozvrh</RootNamespace>
-    <AssemblyName>Rozvrh</AssemblyName>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>StudentsAssistant</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -230,9 +230,6 @@
       <Project>{4cba5bff-4d3c-4768-bdbe-030ba5865968}</Project>
       <Name>SharedLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AppxSystemBinary Include="Rozvrh.dll" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

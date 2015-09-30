@@ -1,6 +1,6 @@
 ﻿using SharedLib;
 
-namespace Rozvrh {
+namespace Main {
     class DisplayClass {
         public ClassInstance classInstance;
         public Task taskInstance;

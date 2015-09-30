@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rozvrh", "Rozvrh\Rozvrh.csproj", "{E878092F-82AC-4CDD-86CF-B0A872A4BB8C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Rozvrh\Main.csproj", "{E878092F-82AC-4CDD-86CF-B0A872A4BB8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundTasks", "BackgroundTask\BackgroundTasks.csproj", "{C0A6E52F-1B8B-43B4-B6F7-ADAC0C945A04}"
 EndProject

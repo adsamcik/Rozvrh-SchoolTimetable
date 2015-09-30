@@ -7,7 +7,7 @@ using SharedLib;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Rozvrh {
+namespace Main {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -100,6 +100,8 @@ namespace Rozvrh {
                 timePickerTo.Time = cInstance.to;
                 textBoxRoom.Text = cInstance.room;
                 comboBoxDay.SelectedIndex = (int)cInstance.weekDay;
+                System.Diagnostics.Debug.WriteLine(cInstance);
+                System.Diagnostics.Debug.WriteLine(Data.teachers.FindIndex(x => x.GetHashCode() == cInstance.teacher.GetHashCode()));
                 comboBoxTeacher.SelectedIndex = Data.teachers.FindIndex(x => x == cInstance.teacher);
                 editObject = cInstance;
                 buttonDelete.Visibility = Visibility.Visible;

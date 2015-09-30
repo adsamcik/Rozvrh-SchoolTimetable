@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Rozvrh {
+namespace Main {
     public class ClassWeekStyleSelector : DataTemplateSelector {
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container) {
