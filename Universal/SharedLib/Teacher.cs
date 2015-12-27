@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharedLib {
     public class Teacher {
+        public string uid;
         public string name, surname, degree, phone, email;
 
         [JsonIgnore]
@@ -22,12 +23,17 @@ namespace SharedLib {
                 return (cInstance.Count > 0) ? result.Substring(0, result.Length-2) : result;
         } }
 
-        public Teacher(string name, string surname, string email = "", string phone = "", string degree = "") {
+        public Teacher(string name, string surname, string email = "", string phone = "", string degree = "", string uid = "") {
             this.name = name;
             this.surname = surname;
             this.degree = degree;
             this.email = email;
             this.phone = phone;
+
+            if (string.IsNullOrWhiteSpace(uid))
+                this.uid = Guid.NewGuid().ToString();
+            else
+                this.uid = uid;
         }
 
         public override string ToString() {
